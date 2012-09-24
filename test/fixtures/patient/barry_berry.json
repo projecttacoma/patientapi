@@ -154,6 +154,10 @@
       "ageAtOnset": 20,
       "priority": 1,
       "ordinality": "principal",
+      "ordinality_code": {
+        "code": "8319008",
+        "codeSystem": "SNOMED-CT"
+      },
       "severity": {
         "code": "371924009",
         "codeSystem": "SNOMED-CT"
