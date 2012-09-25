@@ -52,7 +52,7 @@ class hQuery.Condition extends hQuery.CodedEntry
 
   ###*
   Ordinality
-  @returns {String}
+  @returns {CodedValue}
   ###
   ordinality: -> new hQuery.CodedValue @json['ordinality_code']['code'], @json['ordinality_code']['codeSystem']
 
