@@ -426,7 +426,7 @@ class hQuery.CodedEntry
         if value['scalar']?
           values.push new hQuery.PhysicalQuantity value
         else
-          values.push hQuery.createCodedValues values
+          values = values.concat hQuery.createCodedValues value.codes
     values
 
 
