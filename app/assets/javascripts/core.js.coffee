@@ -29,7 +29,7 @@ class hQuery.Scalar
 class hQuery.PhysicalQuantity
   constructor: (@json) ->
   units: -> @json['units']
-  scalar: -> @json['scalar']
+  scalar: -> parseFloat(@json['scalar'])
 
 ###*
 @class A code with its corresponding code system
