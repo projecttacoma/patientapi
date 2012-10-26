@@ -52,6 +52,9 @@ class hQuery.CodedValue
   @returns {String} the code system name
   ###
   codeSystemName: -> @csn
+  
+  @normalize: (val) ->
+    String(val).toLowerCase()
 
   ###*
   Returns true if the contained code and codeSystemName match a code in the supplied codeSet.
@@ -62,7 +65,9 @@ class hQuery.CodedValue
     for codeSystemName, codes of codeSet
       if @csn==codeSystemName
         for code in codes
-          if code==@c
+          c1 = hQuery.CodedValue.normalize(code)
+          c2 = hQuery.CodedValue.normalize(@c)
+          if c1==c2
             return true
     return false
 
