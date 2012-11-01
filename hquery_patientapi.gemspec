@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.email = "talk@hquery.org"
   s.homepage = "http://github.com/hquery/patient_api"
   s.authors = ["Marc Hadley", "Andy Gregorowicz", "Rob Dingwell"]
-  s.version = '0.1.0'
+  s.version = '0.3.0'
 
   s.files = `git ls-files`.split("\n")
 end
