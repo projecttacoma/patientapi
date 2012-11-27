@@ -493,7 +493,8 @@ class hQuery.CodedEntryList extends Array
     for entry in this
       afterStart = (!start || entry.timeStamp()>=start)
       beforeEnd = (!end || entry.timeStamp()<=end)
-      if (afterStart && beforeEnd && entry.includesCodeFrom(codeSet) && (includeNegated || !entry.negationInd()))
+      matchesCode = codeSet == null || entry.includesCodeFrom(codeSet)
+      if (afterStart && beforeEnd && matchesCode && (includeNegated || !entry.negationInd()))
         cloned.push(entry)
     cloned
 
