@@ -42,7 +42,7 @@ class PatientApiTest  < Test::Unit::TestCase
     assert_equal 'CPT', @context.eval('patient.encounters()[0].type()[0].codeSystemName()')
     assert_equal 'OP12345', @context.eval('patient.encounters()[0].id')
     assert_equal 'Outpatient encounter', @context.eval('patient.encounters()[0].freeTextType()')
-    assert_equal 'Home', @context.eval('patient.encounters()[0].dischargeDisp()')
+    assert_equal 'Home', @context.eval('patient.encounters()[0].dischargeDisposition()')
     assert_equal '04', @context.eval('patient.encounters()[0].admitType().code()')
     assert_equal 'General Hospital', @context.eval('patient.encounters()[0].performer().organization().organizationName()')
     assert_equal 2005, @context.eval('patient.encounters()[0].encounterDuration().low().getFullYear()')
@@ -52,6 +52,8 @@ class PatientApiTest  < Test::Unit::TestCase
     assert_equal 'HL7 Healthcare Service Location', @context.eval('patient.encounters()[0].facility().codeSystemName()')
     assert_equal '1155-1', @context.eval('patient.encounters()[0].facility().code()')
     assert_equal 'General Hospital', @context.eval('patient.encounters()[0].facility().name()')
+    assert_equal 2191, @context.eval('patient.encounters()[0].lengthOfStay()')
+    assert_equal "444933003", @context.eval('patient.encounters()[0].transferTo().code()')
   end
 
   def test_procedures
@@ -66,6 +68,7 @@ class PatientApiTest  < Test::Unit::TestCase
     assert_equal '71854001', @context.eval('patient.procedures()[0].site().code()')
     assert_equal 'Bobby', @context.eval('patient.procedures()[0].performer().person().given()')
     assert_equal 'Tables', @context.eval('patient.procedures()[0].performer().person().last()')
+    assert_equal '158967008', @context.eval('patient.procedures()[0].source().code()')
   end
 
   def test_vital_signs
@@ -113,6 +116,7 @@ class PatientApiTest  < Test::Unit::TestCase
     assert_equal 30, @context.eval('patient.medications()[0].orderInformation()[0].quantityOrdered().value()')
     assert_equal 20, @context.eval('patient.medications()[0].orderInformation()[0].fills()')
     assert_equal 3, @context.eval('patient.medications()[0].cumulativeMedicationDuration()["scalar"]')
+    assert_equal "195911009", @context.eval('patient.medications()[0].reason().code()')
   end
   
   def test_immunizations

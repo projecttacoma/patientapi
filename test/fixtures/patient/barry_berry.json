@@ -99,10 +99,14 @@
           }
         ]
       },
+      "transferTo": {
+        "code": "444933003",
+        "codeSystem": "SNOMED-CT"
+      },
       "time": 1268042997,
       "description": "Outpatient encounter",
       "_id": "OP12345",
-      "dischargeDisp": "Home",
+      "dischargeDisposition": "Home",
       "admitType": {
         "code": "04",
         "codeSystem": "regular"
@@ -217,7 +221,11 @@
           "last": "Tables"
         }
       },
-      "description": "Colonscopy"
+      "description": "Colonscopy",
+      "source": {
+        "code": "158967008",
+        "codeSystem": "SNOMED-CT"
+      }
     }
   ],
   "results": [
@@ -345,6 +353,10 @@
       },
       "time": 1286382415,
       "description": "Multivitamin",
+      "reason": {
+        "code": "195911009",
+        "codeSystem": "SNOMED-CT"
+      },
       "brandName": "Centrum Silver",
       "route": {
         "code": "C38288",

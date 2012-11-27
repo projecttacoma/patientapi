@@ -25,7 +25,7 @@ class hQuery.Encounter extends hQuery.CodedEntry
   ###*
   @returns {String}
   ####
-  dischargeDisp: -> @json['dischargeDisp']
+  dischargeDisposition: -> @json['dischargeDisposition']
   
   ###*
   A code indicating the priority of the admission (e.g., Emergency, Urgent, Elective, et cetera) from
@@ -54,3 +54,14 @@ class hQuery.Encounter extends hQuery.CodedEntry
   ###
   reasonForVisit: -> new hQuery.CodedEntry @json['reason']
   
+  ###*
+  @returns {Integer}
+  ###
+  lengthOfStay: ->
+    return 0 unless @json['hi']? && @json['low']?
+    Math.floor((@json['hi'] - @json['low']) / (60 * 60 * 24))
+
+  ###*
+  @returns {CodedValue}
+  ###
+  transferTo: -> new hQuery.CodedValue @json['transferTo']['code'], @json['transferTo']['codeSystem']

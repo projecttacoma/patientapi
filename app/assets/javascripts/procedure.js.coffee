@@ -26,3 +26,8 @@ class hQuery.Procedure extends hQuery.CodedEntry
   procedure was performed
   ###
   site: -> new hQuery.CodedValue @json['site']['code'], @json['site']['codeSystem']
+
+  ###*
+  @returns {hQuery.CodedValue} A SNOMED code indicating where the procedure was performed.
+  ###
+  source: -> new hQuery.CodedValue @json['source']['code'], @json['source']['codeSystem']

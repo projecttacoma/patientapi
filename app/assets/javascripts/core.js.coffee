@@ -462,6 +462,12 @@ class hQuery.CodedEntry
     else
       null
 
+  ###*
+  Explains the reason for an entry.
+  @returns {hQuery.CodedValue}   Used to explain the rationale for a given entry.
+  ###
+  reason: -> new hQuery.CodedValue @json['reason']['code'], @json['reason']['codeSystem']
+
 ###*
 @class Represents a list of hQuery.CodedEntry instances. Offers utility methods for matching
 entries based on codes and date ranges
