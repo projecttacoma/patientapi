@@ -466,7 +466,12 @@ class hQuery.CodedEntry
   Explains the reason for an entry.
   @returns {hQuery.CodedValue}   Used to explain the rationale for a given entry.
   ###
-  reason: -> new hQuery.CodedValue @json['reason']['code'], @json['reason']['codeSystem']
+  reason: -> 
+    if @json['reason'] && @json['reason']['code'] && @json['reason']['codeSystem']
+      new hQuery.CodedValue @json['reason']['code'], @json['reason']['codeSystem']
+    else
+      null
+  
 
 ###*
 @class Represents a list of hQuery.CodedEntry instances. Offers utility methods for matching

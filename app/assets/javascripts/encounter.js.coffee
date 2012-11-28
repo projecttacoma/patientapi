@@ -64,4 +64,17 @@ class hQuery.Encounter extends hQuery.CodedEntry
   ###*
   @returns {CodedValue}
   ###
-  transferTo: -> new hQuery.CodedValue @json['transferTo']['code'], @json['transferTo']['codeSystem']
+  transferTo: -> 
+    if @json['transferTo'] && @json['transferTo']['code'] && @json['transferTo']['codeSystem']
+      new hQuery.CodedValue @json['transferTo']['code'], @json['transferTo']['codeSystem']
+    else
+      null
+  
+  ###*
+  @returns {CodedValue}
+  ###
+  transferFrom: -> 
+    if @json['transferFrom'] && @json['transferFrom']['code'] && @json['transferFrom']['codeSystem']
+      new hQuery.CodedValue @json['transferFrom']['code'], @json['transferFrom']['codeSystem']
+    else
+      null  

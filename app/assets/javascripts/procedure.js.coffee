@@ -30,4 +30,9 @@ class hQuery.Procedure extends hQuery.CodedEntry
   ###*
   @returns {hQuery.CodedValue} A SNOMED code indicating where the procedure was performed.
   ###
-  source: -> new hQuery.CodedValue @json['source']['code'], @json['source']['codeSystem']
+  source: -> 
+    if @json['source'] && @json['source']['code'] && @json['source']['codeSystem']
+      new hQuery.CodedValue @json['source']['code'], @json['source']['codeSystem']
+    else
+      null  
+  
