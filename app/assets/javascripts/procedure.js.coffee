@@ -25,10 +25,18 @@ class hQuery.Procedure extends hQuery.CodedEntry
   @returns {hQuery.CodedValue} A SNOMED code indicating the body site on which the 
   procedure was performed
   ###
-  site: -> hQuery.createCodedValue  @json['site']
+  site: -> new hQuery.CodedValue @json['site']['code'], @json['site']['codeSystem']
 
   ###*
   @returns {hQuery.CodedValue} A SNOMED code indicating where the procedure was performed.
   ###
-  source: ->  hQuery.createCodedValue @json['source']
-  
+  source: -> 
+    if @json['source'] && @json['source']['code'] && @json['source']['codeSystem']
+      new hQuery.CodedValue @json['source']['code'], @json['source']['codeSystem']
+    else
+      null
+
+  ###*
+  @returns {Date} The actual or intended start of an incision.
+  ###
+  incisionDatetime: -> hQuery.dateFromUtcSeconds @json['incisionDatetime']
