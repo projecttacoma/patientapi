@@ -39,4 +39,8 @@ class hQuery.Procedure extends hQuery.CodedEntry
   ###*
   @returns {Date} The actual or intended start of an incision.
   ###
-  incisionDatetime: -> hQuery.dateFromUtcSeconds @json['incisionDatetime']
+  incisionDatetime: -> 
+    if @json['incisionDatetime']
+      hQuery.dateFromUtcSeconds @json['incisionDatetime']
+    else
+      null
