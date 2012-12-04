@@ -11,6 +11,7 @@ group :test do
   gem 'turn', :require => false
 
   platforms :ruby do
+    gem "libv8" 
     gem "therubyracer", :require => 'v8'
   end
   
