@@ -63,7 +63,7 @@ class hQuery.Patient extends hQuery.Person
   gender: -> @json['gender']
 
   ###*
-  @returns {Date} containing the patient's birthdate
+  @returns {Date} containing the patients birthdate
   ###
   birthtime: ->
     hQuery.dateFromUtcSeconds @json['birthdate']
@@ -92,7 +92,7 @@ class hQuery.Patient extends hQuery.Person
   ###
   maritalStatus: -> 
     if @json['maritalStatus']
-      return new hQuery.CodedValue @json['maritalStatus']['code'], @json['maritalStatus']['codeSystem']
+      return hQuery.createCodedValue @json['maritalStatus']
   
   ###*
   @returns {CodedValue}  of the spiritual faith affiliation of the patient
@@ -100,7 +100,7 @@ class hQuery.Patient extends hQuery.Person
   ###
   religiousAffiliation: -> 
     if @json['religiousAffiliation']
-      return new hQuery.CodedValue @json['religiousAffiliation']['code'], @json['religiousAffiliation']['codeSystem']
+      return hQuery.createCodedValue @json['religiousAffiliation']
   
   ###*
   @returns {CodedValue}  of the race of the patient
@@ -108,7 +108,7 @@ class hQuery.Patient extends hQuery.Person
   ###
   race: -> 
     if @json['race']
-      return new hQuery.CodedValue @json['race']['code'], @json['race']['codeSystem']
+      return hQuery.createCodedValue @json['race']
   
   ###*
   @returns {CodedValue} of the ethnicity of the patient
@@ -116,7 +116,7 @@ class hQuery.Patient extends hQuery.Person
   ###
   ethnicity: -> 
     if @json['ethnicity']
-      return new hQuery.CodedValue @json['ethnicity']['code'], @json['ethnicity']['codeSystem']
+      return hQuery.createCodedValue @json['ethnicity']
   
   ###*
   @returns {CodedValue} This is the code specifying the level of confidentiality of the document.
@@ -124,7 +124,7 @@ class hQuery.Patient extends hQuery.Person
   ###
   confidentiality: -> 
     if  @json['confidentiality']
-      return new hQuery.CodedValue @json['confidentiality']['code'], @json['confidentiality']['codeSystem']
+      return hQuery.createCodedValue @json['confidentiality']
   
   ###*
   @returns {Address} of the location where the patient was born

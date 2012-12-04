@@ -225,7 +225,8 @@
       "source": {
         "code": "158967008",
         "codeSystem": "SNOMED-CT"
-      }
+      },
+      "incisionDatetime": 1073238725
     }
   ],
   "results": [

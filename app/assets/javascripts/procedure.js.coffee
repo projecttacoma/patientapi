@@ -34,5 +34,9 @@ class hQuery.Procedure extends hQuery.CodedEntry
     if @json['source'] && @json['source']['code'] && @json['source']['codeSystem']
       new hQuery.CodedValue @json['source']['code'], @json['source']['codeSystem']
     else
-      null  
-  
+      null
+
+  ###*
+  @returns {Date} The actual or intended start of an incision.
+  ###
+  incisionDatetime: -> hQuery.dateFromUtcSeconds @json['incisionDatetime']

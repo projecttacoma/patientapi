@@ -26,7 +26,7 @@ class hQuery.Provider
   ###*
   @returns {hQuery.CodedValue}
   ###
-  role: -> new hQuery.CodedValue @json['role']['code'], @json['role']['codeSystem']
+  role: -> hQuery.createCodedValue @json['role']
   
   ###*
   @returns {String}
@@ -37,7 +37,7 @@ class hQuery.Provider
   ###*
   @returns {hQuery.CodedValue}
   ###
-  providerType: -> new hQuery.CodedValue @json['providerType']['code'], @json['providerType']['codeSystem']
+  providerType: -> hQuery.createCodedValue @json['providerType']
     
   
   ###*

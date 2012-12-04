@@ -29,7 +29,7 @@ class hQuery.Result extends hQuery.CodedEntry
   ###*
   @returns {CodedValue}
   ###
-  interpretation: -> new hQuery.CodedValue @json['interpretation'].code, @json['interpretation'].codeSystem
+  interpretation: -> hQuery.createCodedValue  @json['interpretation']
   
   ###*
   @returns {String}

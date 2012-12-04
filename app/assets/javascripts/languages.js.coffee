@@ -17,7 +17,7 @@ class hQuery.Language extends hQuery.CodedEntry
   ###*
   @returns {hQuery.CodedValue}
   ###
-  modeCode: -> new hQuery.CodedValue @json['modeCode']['code'], @json['modeCode']['codeSystem']
+  modeCode: -> hQuery.createCodedValue @json['modeCode']
   
   ###*
   @returns {String}

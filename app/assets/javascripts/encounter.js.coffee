@@ -9,12 +9,12 @@ this.hQuery ||= {}
 ###*
 An Encounter is an interaction, regardless of the setting, between a patient and a
 practitioner who is vested with primary responsibility for diagnosing, evaluating,
-or treating the patient condition. It may include visits, appointments, as well
+or treating the patients condition. It may include visits, appointments, as well
 as non face-to-face interactions. It is also a contact between a patient and a
 practitioner who has primary responsibility for assessing and treating the
 patient at a given contact, exercising independent judgment.
 @class An Encounter is an interaction, regardless of the setting, between a patient and a
-practitioner 
+practitioner
 @augments hQuery.CodedEntry
 @exports Encounter as hQuery.Encounter 
 ###
@@ -32,7 +32,7 @@ class hQuery.Encounter extends hQuery.CodedEntry
   National Uniform Billing Committee (NUBC)
   @returns {CodedValue}
   ###
-  admitType: -> new hQuery.CodedValue @json['admitType']['code'], @json['admitType']['codeSystem']
+  admitType: -> hQuery.createCodedValue @json['admitType']
   
   ###*
   @returns {hQuery.Actor}
@@ -59,17 +59,9 @@ class hQuery.Encounter extends hQuery.CodedEntry
   ###*
   @returns {CodedValue}
   ###
-  transferTo: -> 
-    if @json['transferTo'] && @json['transferTo']['code'] && @json['transferTo']['codeSystem']
-      new hQuery.CodedValue @json['transferTo']['code'], @json['transferTo']['codeSystem']
-    else
-      null
+  transferTo: -> hQuery.createCodedValue @json['transferTo']
   
   ###*
   @returns {CodedValue}
   ###
-  transferFrom: -> 
-    if @json['transferFrom'] && @json['transferFrom']['code'] && @json['transferFrom']['codeSystem']
-      new hQuery.CodedValue @json['transferFrom']['code'], @json['transferFrom']['codeSystem']
-    else
-      null  
+  transferFrom: -> hQuery.createCodedValue @json['transferFrom']
