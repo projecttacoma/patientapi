@@ -456,21 +456,13 @@ class hQuery.CodedEntry
   Indicates the reason an entry was negated.
   @returns {hQuery.CodedValue}   Used to indicate reason an immunization was not administered.
   ###
-  negationReason: -> 
-    if @json['negationReason'] && @json['negationReason']['code'] && @json['negationReason']['codeSystem']
-      new hQuery.CodedValue @json['negationReason']['code'], @json['negationReason']['codeSystem']
-    else
-      null
+  negationReason: -> hQuery.createCodedValue  @json['negationReason']
 
   ###*
   Explains the reason for an entry.
   @returns {hQuery.CodedValue}   Used to explain the rationale for a given entry.
   ###
-  reason: -> 
-    if @json['reason'] && @json['reason']['code'] && @json['reason']['codeSystem']
-      new hQuery.CodedValue @json['reason']['code'], @json['reason']['codeSystem']
-    else
-      null
+  reason: -> hQuery.createCodedValue @json['reason']
   
 
 ###*
@@ -565,4 +557,9 @@ hQuery.createCodedValues = (jsonCodes) ->
       codedValues.push new hQuery.CodedValue code, codeSystem
   codedValues
 
+hQuery.createCodedValue = (json) ->
+  value = new hQuery.CodedValue json['code'], json['codeSystem'] if json?
+  value || new hQuery.CodedValue()
+  
+    
 
