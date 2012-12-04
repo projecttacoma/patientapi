@@ -9,7 +9,7 @@ this.hQuery ||= {}
 ###*
 An Encounter is an interaction, regardless of the setting, between a patient and a
 practitioner who is vested with primary responsibility for diagnosing, evaluating,
-or treating the patient's condition. It may include visits, appointments, as well
+or treating the patient condition. It may include visits, appointments, as well
 as non face-to-face interactions. It is also a contact between a patient and a
 practitioner who has primary responsibility for assessing and treating the
 patient at a given contact, exercising independent judgment.
@@ -45,11 +45,6 @@ class hQuery.Encounter extends hQuery.CodedEntry
   facility: -> new hQuery.Facility @json['facility']
 
   ###*
-  @returns {hQuery.DateRange}
-  ###
-  encounterDuration: -> new hQuery.DateRange @json
-  
-  ###*
   @returns {hQuery.CodedEntry}
   ###
   reasonForVisit: -> new hQuery.CodedEntry @json['reason']
@@ -58,8 +53,8 @@ class hQuery.Encounter extends hQuery.CodedEntry
   @returns {Integer}
   ###
   lengthOfStay: ->
-    return 0 unless @json['hi']? && @json['low']?
-    Math.floor((@json['hi'] - @json['low']) / (60 * 60 * 24))
+    return 0 unless @startDate()? && @endDate()?
+    Math.floor((@endDate() - @startDate()) / (1000 * 60 * 60 * 24))
 
   ###*
   @returns {CodedValue}

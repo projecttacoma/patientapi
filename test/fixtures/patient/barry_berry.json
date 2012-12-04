@@ -116,8 +116,8 @@
           "name": "General Hospital"
         }
       },
-      "low": 1124956803,
-      "hi": 1314259203,
+      "start_time": 1124956803,
+      "end_time": 1314259203,
       "reason": {
         "codes": {
           "CPT": [
