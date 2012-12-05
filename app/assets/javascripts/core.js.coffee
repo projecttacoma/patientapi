@@ -558,8 +558,4 @@ hQuery.createCodedValues = (jsonCodes) ->
   codedValues
 
 hQuery.createCodedValue = (json) ->
-  value = new hQuery.CodedValue json['code'], json['codeSystem'] if json?
-  value || new hQuery.CodedValue()
-  
-    
-
+  new hQuery.CodedValue json['code'], json['codeSystem'] if json?
