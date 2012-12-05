@@ -45,11 +45,6 @@ class hQuery.Encounter extends hQuery.CodedEntry
   facility: -> new hQuery.Facility @json['facility']
 
   ###*
-  @returns {hQuery.DateRange}
-  ###
-  encounterDuration: -> new hQuery.DateRange @json
-  
-  ###*
   @returns {hQuery.CodedEntry}
   ###
   reasonForVisit: -> new hQuery.CodedEntry @json['reason']
@@ -58,8 +53,8 @@ class hQuery.Encounter extends hQuery.CodedEntry
   @returns {Integer}
   ###
   lengthOfStay: ->
-    return 0 unless @json['hi']? && @json['low']?
-    Math.floor((@json['hi'] - @json['low']) / (60 * 60 * 24))
+    return 0 unless @startDate()? && @endDate()?
+    Math.floor((@endDate() - @startDate()) / (1000 * 60 * 60 * 24))
 
   ###*
   @returns {CodedValue}

@@ -346,6 +346,12 @@ class hQuery.CodedEntry
     # id of the entry from the source document if available
     @source_id = @json['id']
     @_freeTextType = @json['description']
+    
+  ###*
+  Adjust the start and end times of this event to the supplied timestamp
+  ###
+  setTimestamp: (timestamp) ->
+    @_date = @_startDate = @_endDate = timestamp
 
   ###*
   Date and time at which the coded entry took place
