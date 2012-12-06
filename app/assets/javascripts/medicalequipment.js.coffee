@@ -25,4 +25,9 @@ class hQuery.MedicalEquipment extends hQuery.CodedEntry
   ###*
   @returns {CodedValue}
   ###
-  anatomicalStructure: -> hQuery.createCodedValue  @json['anatomicalStructure']
+  anatomicalStructure: -> hQuery.createCodedValue @json['anatomicalStructure']
+
+  ###*
+  @returns {Date} The actual or intended removal time of the device.
+  ###
+  removalTime: -> hQuery.dateFromUtcSeconds @json['removalTime'] if @json['removalTime']

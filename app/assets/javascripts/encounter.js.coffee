@@ -21,6 +21,9 @@ practitioner
 class hQuery.Encounter extends hQuery.CodedEntry
   constructor: (@json) ->
     super(@json)
+    @_admitTime = hQuery.dateFromUtcSeconds @json['admitTime'] if @json['admitTime']
+    @_dischargeTime = hQuery.dateFromUtcSeconds @json['dischargeTime'] if @json['dischargeTime']
+    
   	
   ###*
   @returns {String}
@@ -35,19 +38,31 @@ class hQuery.Encounter extends hQuery.CodedEntry
   admitType: -> hQuery.createCodedValue @json['admitType']
   
   ###*
+  Date and time at which the patient was admitted for the encounter
+  @returns {Date}
+  ###
+  admitTime: -> @_admitTime
+
+  ###*
+  Date and time at which the patient was discharged for the encounter
+  @returns {Date}
+  ###
+  dischargeTime: -> @_dischargeTime
+  
+  ###*
   @returns {hQuery.Actor}
   ###
-  performer: -> new hQuery.Actor @json['performer']
+  performer: -> new hQuery.Actor @json['performer'] if @json['performer']
   
   ###*
   @returns {hQuery.Organization}
   ###
-  facility: -> new hQuery.Facility @json['facility']
+  facility: -> new hQuery.Facility @json['facility'] if @json['facility']
 
   ###*
   @returns {hQuery.CodedEntry}
   ###
-  reasonForVisit: -> new hQuery.CodedEntry @json['reason']
+  reasonForVisit: -> new hQuery.CodedEntry @json['reason'] if @json['reason']
   
   ###*
   @returns {Integer}
@@ -55,6 +70,7 @@ class hQuery.Encounter extends hQuery.CodedEntry
   lengthOfStay: ->
     return 0 unless @startDate()? && @endDate()?
     Math.floor((@endDate() - @startDate()) / (1000 * 60 * 60 * 24))
+
 
   ###*
   @returns {CodedValue}

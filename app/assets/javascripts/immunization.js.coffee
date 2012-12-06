@@ -78,7 +78,7 @@ class hQuery.Immunization extends hQuery.CodedEntry
   ###*
   @returns{hQuery.Scalar} 
   ###
-  medicationSeriesNumber: ->  new hQuery.Scalar @json['medicationSeriesNumber']
+  medicationSeriesNumber: ->  new hQuery.Scalar @json['medicationSeriesNumber'] if  @json['medicationSeriesNumber']
   
   ###*
   @returns{hQuery.MedicationInformation}
@@ -93,7 +93,7 @@ class hQuery.Immunization extends hQuery.CodedEntry
   ###*
   @returns{hQuery.Actor} Performer of immunization
   ###
-  performer:-> new hQuery.Actor @json['performer']
+  performer:-> new hQuery.Actor @json['performer'] if @json['performer']
   
   ###*
   @returns {comment} human readable description of event

@@ -67,7 +67,7 @@ class hQuery.Condition extends hQuery.CodedEntry
   cause of death
   @returns {hQuery.CauseOfDeath}
   ###
-  causeOfDeath: -> new hQuery.CauseOfDeath @json['causeOfDeath']
+  causeOfDeath: -> new hQuery.CauseOfDeath @json['causeOfDeath'] if  @json['causeOfDeath']
   
   ###*
   problem status

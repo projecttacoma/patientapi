@@ -16,12 +16,12 @@ class hQuery.Provider
   ###*
   @returns {hQuery.Person}
   ###
-  providerEntity: -> new hQuery.Person @json['providerEntity']
+  providerEntity: -> new hQuery.Person @json['providerEntity'] if @json['providerEntity']
   
   ###*
   @returns {hQuery.DateRange}
   ###
-  careProvisionDateRange: -> new hQuery.DateRange @json['careProvisionDateRange']
+  careProvisionDateRange: -> new hQuery.DateRange @json['careProvisionDateRange'] if @json['careProvisionDateRange']
       
   ###*
   @returns {hQuery.CodedValue}
