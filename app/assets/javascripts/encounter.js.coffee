@@ -23,7 +23,7 @@ class hQuery.Encounter extends hQuery.CodedEntry
     super(@json)
     @_admitTime = hQuery.dateFromUtcSeconds @json['admitTime'] if @json['admitTime']
     @_dischargeTime = hQuery.dateFromUtcSeconds @json['dischargeTime'] if @json['dischargeTime']
-    
+    @_facility = new hQuery.Facility @json['facility'] if @json['facility']
   	
   ###*
   @returns {String}
@@ -57,7 +57,9 @@ class hQuery.Encounter extends hQuery.CodedEntry
   ###*
   @returns {hQuery.Organization}
   ###
-  facility: -> new hQuery.Facility @json['facility'] if @json['facility']
+  facility: -> @_facility
+  facilityArrival: -> @_facility?.startDate()
+  facilityDeparture: -> @_facility?.endDate()
 
   ###*
   @returns {hQuery.CodedEntry}
