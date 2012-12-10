@@ -157,8 +157,7 @@
       "description": "Colorectal Cancer",
       "ageAtOnset": 20,
       "priority": 1,
-      "ordinality": "principal",
-      "ordinality_code": {
+      "ordinality": {
         "code": "8319008",
         "codeSystem": "SNOMED-CT"
       },

@@ -54,7 +54,7 @@ class hQuery.Condition extends hQuery.CodedEntry
   Ordinality
   @returns {CodedValue}
   ###
-  ordinality: -> hQuery.createCodedValue @json['ordinality_code']
+  ordinality: -> hQuery.createCodedValue @json['ordinality']
 
   ###*
   age at onset
