@@ -1,4 +1,9 @@
 require File.expand_path("../../test_helper", __FILE__)
+if RUBY_PLATFORM=='java'
+  require 'rhino'
+else
+  require 'v8'
+end
 
 class PatientApiTest  < Test::Unit::TestCase
   def setup
@@ -7,8 +12,21 @@ class PatientApiTest  < Test::Unit::TestCase
     initialize_patient = 'var patient = new hQuery.Patient(barry);'
     date = Time.new(2010,1,1)
     initialize_date = "var sampleDate = new Date(#{date.to_i*1000});"
-    @context = ExecJS.compile(patient_api + "\nvar barry = " + fixture_json + ";\n" + initialize_patient + "\n" + initialize_date)
+    if RUBY_PLATFORM=='java'
+      @context = Rhino::Context.new
+    else
+      @context = V8::Context.new
+    end
+
+    @context.eval(patient_api + "\nvar barry = " + fixture_json + ";\n" + initialize_patient + "\n" + initialize_date)
   end
+  
+  def test_utils
+    @context.eval('var encounter = patient.encounters()[0]')
+    assert_equal 2005, @context.eval('encounter.startDate().getFullYear()')
+    @context.eval('encounter.setTimestamp(new Date(2010,1,1))')
+    assert_equal 2010, @context.eval('encounter.startDate().getFullYear()')
+  end    
 
   def test_demographics
     assert_equal 'Barry', @context.eval('patient.given()')
@@ -42,16 +60,18 @@ class PatientApiTest  < Test::Unit::TestCase
     assert_equal 'CPT', @context.eval('patient.encounters()[0].type()[0].codeSystemName()')
     assert_equal 'OP12345', @context.eval('patient.encounters()[0].id')
     assert_equal 'Outpatient encounter', @context.eval('patient.encounters()[0].freeTextType()')
-    assert_equal 'Home', @context.eval('patient.encounters()[0].dischargeDisp()')
+    assert_equal 'Home', @context.eval('patient.encounters()[0].dischargeDisposition()')
     assert_equal '04', @context.eval('patient.encounters()[0].admitType().code()')
     assert_equal 'General Hospital', @context.eval('patient.encounters()[0].performer().organization().organizationName()')
-    assert_equal 2005, @context.eval('patient.encounters()[0].encounterDuration().low().getFullYear()')
-    assert_equal 2011, @context.eval('patient.encounters()[0].encounterDuration().hi().getFullYear()')
+    assert_equal 2005, @context.eval('patient.encounters()[0].startDate().getFullYear()')
+    assert_equal 2011, @context.eval('patient.encounters()[0].endDate().getFullYear()')
     assert_equal 'PCP referred', @context.eval('patient.encounters()[0].reasonForVisit().freeTextType()')
     assert_equal 'CPT', @context.eval('patient.encounters()[0].reasonForVisit().type()[0].codeSystemName()')
     assert_equal 'HL7 Healthcare Service Location', @context.eval('patient.encounters()[0].facility().codeSystemName()')
     assert_equal '1155-1', @context.eval('patient.encounters()[0].facility().code()')
     assert_equal 'General Hospital', @context.eval('patient.encounters()[0].facility().name()')
+    assert_equal 2191, @context.eval('patient.encounters()[0].lengthOfStay()')
+    assert_equal "444933003", @context.eval('patient.encounters()[0].transferTo().code()')
   end
 
   def test_procedures
@@ -66,6 +86,8 @@ class PatientApiTest  < Test::Unit::TestCase
     assert_equal '71854001', @context.eval('patient.procedures()[0].site().code()')
     assert_equal 'Bobby', @context.eval('patient.procedures()[0].performer().person().given()')
     assert_equal 'Tables', @context.eval('patient.procedures()[0].performer().person().last()')
+    assert_equal '158967008', @context.eval('patient.procedures()[0].source().code()')
+    assert_equal 1073238725000, @context.eval('patient.procedures()[0].incisionTime().getTime()')
   end
 
   def test_vital_signs
@@ -113,6 +135,7 @@ class PatientApiTest  < Test::Unit::TestCase
     assert_equal 30, @context.eval('patient.medications()[0].orderInformation()[0].quantityOrdered().value()')
     assert_equal 20, @context.eval('patient.medications()[0].orderInformation()[0].fills()')
     assert_equal 3, @context.eval('patient.medications()[0].cumulativeMedicationDuration()["scalar"]')
+    assert_equal "195911009", @context.eval('patient.medications()[0].reason().code()')
   end
   
   def test_immunizations

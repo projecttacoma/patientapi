@@ -43,6 +43,5 @@ class hQuery.FunctionalStatus extends hQuery.CodedEntry
   @returns {hQuery.CodedValue}
   ###
   source: ->
-    if @json["source"]?
-      new hQuery.CodedValue @json["source"]["code"], @json["source"]["codeSystem"]
+    hQuery.createCodedValue @json["source"]
   

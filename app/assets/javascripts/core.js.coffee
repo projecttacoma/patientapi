@@ -346,6 +346,12 @@ class hQuery.CodedEntry
     # id of the entry from the source document if available
     @source_id = @json['id']
     @_freeTextType = @json['description']
+    
+  ###*
+  Adjust the start and end times of this event to the supplied timestamp
+  ###
+  setTimestamp: (timestamp) ->
+    @_date = @_startDate = @_endDate = timestamp
 
   ###*
   Date and time at which the coded entry took place
@@ -456,11 +462,14 @@ class hQuery.CodedEntry
   Indicates the reason an entry was negated.
   @returns {hQuery.CodedValue}   Used to indicate reason an immunization was not administered.
   ###
-  negationReason: -> 
-    if @json['negationReason'] && @json['negationReason']['code'] && @json['negationReason']['codeSystem']
-      new hQuery.CodedValue @json['negationReason']['code'], @json['negationReason']['codeSystem']
-    else
-      null
+  negationReason: -> hQuery.createCodedValue  @json['negationReason']
+
+  ###*
+  Explains the reason for an entry.
+  @returns {hQuery.CodedValue}   Used to explain the rationale for a given entry.
+  ###
+  reason: -> hQuery.createCodedValue @json['reason']
+  
 
 ###*
 @class Represents a list of hQuery.CodedEntry instances. Offers utility methods for matching
@@ -493,7 +502,8 @@ class hQuery.CodedEntryList extends Array
     for entry in this
       afterStart = (!start || entry.timeStamp()>=start)
       beforeEnd = (!end || entry.timeStamp()<=end)
-      if (afterStart && beforeEnd && entry.includesCodeFrom(codeSet) && (includeNegated || !entry.negationInd()))
+      matchesCode = codeSet == null || entry.includesCodeFrom(codeSet)
+      if (afterStart && beforeEnd && matchesCode && (includeNegated || !entry.negationInd()))
         cloned.push(entry)
     cloned
 
@@ -553,4 +563,5 @@ hQuery.createCodedValues = (jsonCodes) ->
       codedValues.push new hQuery.CodedValue code, codeSystem
   codedValues
 
-
+hQuery.createCodedValue = (json) ->
+  new hQuery.CodedValue json['code'], json['codeSystem'] if json?

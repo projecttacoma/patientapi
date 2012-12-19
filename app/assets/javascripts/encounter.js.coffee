@@ -9,48 +9,77 @@ this.hQuery ||= {}
 ###*
 An Encounter is an interaction, regardless of the setting, between a patient and a
 practitioner who is vested with primary responsibility for diagnosing, evaluating,
-or treating the patient's condition. It may include visits, appointments, as well
+or treating the patients condition. It may include visits, appointments, as well
 as non face-to-face interactions. It is also a contact between a patient and a
 practitioner who has primary responsibility for assessing and treating the
 patient at a given contact, exercising independent judgment.
 @class An Encounter is an interaction, regardless of the setting, between a patient and a
-practitioner 
+practitioner
 @augments hQuery.CodedEntry
 @exports Encounter as hQuery.Encounter 
 ###
 class hQuery.Encounter extends hQuery.CodedEntry
   constructor: (@json) ->
     super(@json)
+    @_admitTime = hQuery.dateFromUtcSeconds @json['admitTime'] if @json['admitTime']
+    @_dischargeTime = hQuery.dateFromUtcSeconds @json['dischargeTime'] if @json['dischargeTime']
+    @_facility = new hQuery.Facility @json['facility'] if @json['facility']
   	
   ###*
   @returns {String}
   ####
-  dischargeDisp: -> @json['dischargeDisp']
+  dischargeDisposition: -> @json['dischargeDisposition']
   
   ###*
   A code indicating the priority of the admission (e.g., Emergency, Urgent, Elective, et cetera) from
   National Uniform Billing Committee (NUBC)
   @returns {CodedValue}
   ###
-  admitType: -> new hQuery.CodedValue @json['admitType']['code'], @json['admitType']['codeSystem']
+  admitType: -> hQuery.createCodedValue @json['admitType']
+  
+  ###*
+  Date and time at which the patient was admitted for the encounter
+  @returns {Date}
+  ###
+  admitTime: -> @_admitTime
+
+  ###*
+  Date and time at which the patient was discharged for the encounter
+  @returns {Date}
+  ###
+  dischargeTime: -> @_dischargeTime
   
   ###*
   @returns {hQuery.Actor}
   ###
-  performer: -> new hQuery.Actor @json['performer']
+  performer: -> new hQuery.Actor @json['performer'] if @json['performer']
   
   ###*
   @returns {hQuery.Organization}
   ###
-  facility: -> new hQuery.Facility @json['facility']
+  facility: -> @_facility
+  facilityArrival: -> @_facility?.startDate()
+  facilityDeparture: -> @_facility?.endDate()
 
-  ###*
-  @returns {hQuery.DateRange}
-  ###
-  encounterDuration: -> new hQuery.DateRange @json
-  
   ###*
   @returns {hQuery.CodedEntry}
   ###
-  reasonForVisit: -> new hQuery.CodedEntry @json['reason']
+  reasonForVisit: -> new hQuery.CodedEntry @json['reason'] if @json['reason']
   
+  ###*
+  @returns {Integer}
+  ###
+  lengthOfStay: ->
+    return 0 unless @startDate()? && @endDate()?
+    Math.floor((@endDate() - @startDate()) / (1000 * 60 * 60 * 24))
+
+
+  ###*
+  @returns {CodedValue}
+  ###
+  transferTo: -> hQuery.createCodedValue @json['transferTo']
+  
+  ###*
+  @returns {CodedValue}
+  ###
+  transferFrom: -> hQuery.createCodedValue @json['transferFrom']

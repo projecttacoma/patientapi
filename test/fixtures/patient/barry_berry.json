@@ -99,10 +99,14 @@
           }
         ]
       },
+      "transferTo": {
+        "code": "444933003",
+        "codeSystem": "SNOMED-CT"
+      },
       "time": 1268042997,
       "description": "Outpatient encounter",
       "_id": "OP12345",
-      "dischargeDisp": "Home",
+      "dischargeDisposition": "Home",
       "admitType": {
         "code": "04",
         "codeSystem": "regular"
@@ -112,8 +116,8 @@
           "name": "General Hospital"
         }
       },
-      "low": 1124956803,
-      "hi": 1314259203,
+      "start_time": 1124956803,
+      "end_time": 1314259203,
       "reason": {
         "codes": {
           "CPT": [
@@ -153,8 +157,7 @@
       "description": "Colorectal Cancer",
       "ageAtOnset": 20,
       "priority": 1,
-      "ordinality": "principal",
-      "ordinality_code": {
+      "ordinality": {
         "code": "8319008",
         "codeSystem": "SNOMED-CT"
       },
@@ -217,7 +220,12 @@
           "last": "Tables"
         }
       },
-      "description": "Colonscopy"
+      "description": "Colonscopy",
+      "source": {
+        "code": "158967008",
+        "codeSystem": "SNOMED-CT"
+      },
+      "incisionTime": 1073238725
     }
   ],
   "results": [
@@ -345,6 +353,10 @@
       },
       "time": 1286382415,
       "description": "Multivitamin",
+      "reason": {
+        "code": "195911009",
+        "codeSystem": "SNOMED-CT"
+      },
       "brandName": "Centrum Silver",
       "route": {
         "code": "C38288",

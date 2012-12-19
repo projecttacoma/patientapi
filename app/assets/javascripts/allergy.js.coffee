@@ -39,7 +39,7 @@ class hQuery.Allergy  extends hQuery.CodedEntry
   Adverse event types SHALL be coded as specified in HITSP/C80 Section 2.2.3.4.2 Allergy/Adverse Event Type
   @returns {CodedValue}
   ###
-  adverseEventType: -> new hQuery.CodedValue @json['type']['code'], @json['type']['codeSystem']
+  adverseEventType: -> hQuery.createCodedValue @json['type']
 
   ###*
   This indicates the reaction that may be caused by the product or agent.  
@@ -55,7 +55,7 @@ class hQuery.Allergy  extends hQuery.CodedEntry
   235719002  Food intolerance (disorder)
   @returns {CodedValue} 
   ###
-  reaction: -> new hQuery.CodedValue @json['reaction']['code'], @json['reaction']['codeSystem']
+  reaction: -> hQuery.createCodedValue @json['reaction']
 
   ###*
   This is a description of the level of the severity of the allergy or intolerance.
@@ -68,7 +68,7 @@ class hQuery.Allergy  extends hQuery.CodedEntry
     399166001  Fatal
   @returns {CodedValue} 
   ###
-  severity: -> new hQuery.CodedValue @json['severity']['code'], @json['severity']['codeSystem']
+  severity: -> hQuery.createCodedValue @json['severity']
 
   ###*
   Additional comment or textual information

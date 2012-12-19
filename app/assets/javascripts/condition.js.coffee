@@ -54,7 +54,7 @@ class hQuery.Condition extends hQuery.CodedEntry
   Ordinality
   @returns {CodedValue}
   ###
-  ordinality: -> new hQuery.CodedValue @json['ordinality_code']['code'], @json['ordinality_code']['codeSystem']
+  ordinality: -> hQuery.createCodedValue @json['ordinality']
 
   ###*
   age at onset
@@ -67,13 +67,13 @@ class hQuery.Condition extends hQuery.CodedEntry
   cause of death
   @returns {hQuery.CauseOfDeath}
   ###
-  causeOfDeath: -> new hQuery.CauseOfDeath @json['causeOfDeath']
+  causeOfDeath: -> new hQuery.CauseOfDeath @json['causeOfDeath'] if  @json['causeOfDeath']
   
   ###*
   problem status
   @returns {hQuery.CodedValue}
   ###
-  problemStatus: -> new hQuery.CodedValue @json['problemStatus']['code'], @json['problemStatus']['codeSystem']
+  problemStatus: -> hQuery.createCodedValue  @json['problemStatus']
   
   ###*
   comment
@@ -85,4 +85,4 @@ class hQuery.Condition extends hQuery.CodedEntry
   This is a description of the level of the severity of the condition.
   @returns {CodedValue} 
   ###
-  severity: -> new hQuery.CodedValue @json['severity']['code'], @json['severity']['codeSystem']
+  severity: -> hQuery.createCodedValue @json['severity']

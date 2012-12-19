@@ -37,7 +37,7 @@ class hQuery.AdministrationTiming
   mean that the medication should be taken every 8 hours.
   @returns {hQuery.Scalar}
   ###
-  period: -> new hQuery.Scalar @json['period']
+  period: -> new hQuery.Scalar @json['period'] if @json['period']
   
   ###*
   Indicates whether it is the interval (time between dosing), or frequency 
@@ -54,8 +54,8 @@ class hQuery.AdministrationTiming
 ###
 class hQuery.DoseRestriction
   constructor: (@json) ->
-  numerator: -> new hQuery.Scalar @json['numerator']
-  denominator: -> new hQuery.Scalar @json['denominator']
+  numerator: -> new hQuery.Scalar @json['numerator'] if @json['numerator'] 
+  denominator: -> new hQuery.Scalar @json['denominator'] if @json['denominator']
 
 
 ###*
@@ -66,11 +66,11 @@ class hQuery.Fulfillment
   constructor: (@json) ->
 
   dispenseDate: -> hQuery.dateFromUtcSeconds @json['dispenseDate']
-  dispensingPharmacyLocation: -> new hQuery.Address @json['dispensingPharmacyLocation']
-  quantityDispensed: -> new hQuery.Scalar @json['quantityDispensed']
+  dispensingPharmacyLocation: -> new hQuery.Address @json['dispensingPharmacyLocation'] if @json['dispensingPharmacyLocation']
+  quantityDispensed: -> new hQuery.Scalar @json['quantityDispensed'] if @json['quantityDispensed']
   prescriptionNumber: -> @json['prescriptionNumber']
   fillNumber: -> @json['fillNumber']
-  fillStatus: -> new hQuery.Status @json['fillStatus']
+  fillStatus: -> new hQuery.Status @json['fillStatus'] if @json['fillStatus']
 
 ###*
 @class OrderInformation - information abour an order for a medication
@@ -81,7 +81,7 @@ class hQuery.OrderInformation
   
   orderNumber: -> @json['orderNumber']
   fills: -> @json['fills']
-  quantityOrdered: -> new hQuery.Scalar @json['quantityOrdered']
+  quantityOrdered: -> new hQuery.Scalar @json['quantityOrdered'] if @json['quantityOrdered']
   orderExpirationDateTime: -> hQuery.dateFromUtcSeconds @json['orderExpirationDateTime']
   orderDateTime: -> hQuery.dateFromUtcSeconds @json['orderDateTime']
 
@@ -173,7 +173,7 @@ class hQuery.Medication  extends hQuery.CodedEntry
   ###
   indicateMedicationStop: -> hQuery.dateFromUtcSeconds @json['end_time']
 
-  administrationTiming: -> new hQuery.AdministrationTiming @json['administrationTiming']
+  administrationTiming: -> new hQuery.AdministrationTiming @json['administrationTiming'] if @json['administrationTiming']
 
   ###*
   @returns {CodedValue}  Contains routeCode or adminstrationUnitCode information.
@@ -185,22 +185,22 @@ class hQuery.Medication  extends hQuery.CodedEntry
     product as presented to the patient.
     See http://www.fda.gov/Drugs/InformationOnDrugs/ucm142454.htm
   ###
-  route: -> new hQuery.CodedValue @json['route']['code'], @json['route']['codeSystem']
+  route: -> hQuery.createCodedValue @json['route']
 
   ###*
   @returns {hQuery.Scalar} the dose
   ###
-  dose: -> new hQuery.Scalar @json['dose']
+  dose: -> new hQuery.Scalar @json['dose'] if @json['dose']
 
   ###*
   @returns {CodedValue}
   ###
-  site: -> new hQuery.CodedValue @json['site']['code'], @json['site']['codeSystem']
+  site: -> hQuery.createCodedValue @json['site'] if @json['site']
 
   ###*
   @returns {hQuery.DoseRestriction}
   ###
-  doseRestriction: -> new hQuery.DoseRestriction @json['doseRestriction']
+  doseRestriction: -> new hQuery.DoseRestriction @json['doseRestriction'] if @json['doseRestriction']
 
   ###*
   @returns {String}
@@ -215,27 +215,27 @@ class hQuery.Medication  extends hQuery.CodedEntry
   ###*
   @returns {CodedValue}
   ###
-  indication: -> new hQuery.CodedValue @json['indication']['code'], @json['indication']['codeSystem']
+  indication: -> hQuery.createCodedValue @json['indication']
 
   ###*
   @returns {CodedValue}
   ###
-  productForm: -> new hQuery.CodedValue @json['productForm']['code'], @json['productForm']['codeSystem']
+  productForm: -> hQuery.createCodedValue @json['productForm']
 
   ###*
   @returns {CodedValue}
   ###
-  vehicle: -> new hQuery.CodedValue @json['vehicle']['code'], @json['vehicle']['codeSystem']
+  vehicle: -> hQuery.createCodedValue  @json['vehicle']
 
   ###*
   @returns {CodedValue}
   ###
-  reaction: -> new hQuery.CodedValue @json['reaction']['code'], @json['reaction']['codeSystem']
+  reaction: -> hQuery.createCodedValue @json['reaction']
 
   ###*
   @returns {CodedValue}
   ###
-  deliveryMethod: -> new hQuery.CodedValue @json['deliveryMethod']['code'], @json['deliveryMethod']['codeSystem']
+  deliveryMethod: -> hQuery.createCodedValue @json['deliveryMethod']
 
   ###*
   @returns {hQuery.MedicationInformation}
@@ -245,14 +245,14 @@ class hQuery.Medication  extends hQuery.CodedEntry
   ###*
   @returns {hQuery.TypeOfMedication} Indicates whether this is an over the counter or prescription medication
   ###
-  typeOfMedication: -> new hQuery.TypeOfMedication @json['typeOfMedication']['code'], @json['typeOfMedication']['codeSystem']
+  typeOfMedication: -> new hQuery.TypeOfMedication @json['typeOfMedication']?['code'], @json['typeOfMedication']?['codeSystem']
 
   ###*
   Values conform to value set 2.16.840.1.113883.1.11.20.7 - Medication Status
   Values may be: On Hold, No Longer Active, Active, Prior History
   @returns {hQuery.StatusOfMedication}   Used to indicate the status of the medication.
   ###
-  statusOfMedication: -> new hQuery.StatusOfMedication @json['statusOfMedication']['code'], @json['statusOfMedication']['codeSystem']
+  statusOfMedication: -> new hQuery.StatusOfMedication @json['statusOfMedication']?['code'], @json['statusOfMedication']?['codeSystem']
 
   ###*
   @returns {String} free text instructions to the patient

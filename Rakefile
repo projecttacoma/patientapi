@@ -15,6 +15,7 @@ Rake::TestTask.new("test_units") { |t|
 
 
 namespace :doc do
+  desc "Generate JS from CoffeeScript"
   task :generate_js do
     ctx = Sprockets::Environment.new(File.expand_path("../", __FILE__))
     Tilt::CoffeeScriptTemplate.default_bare=true 
