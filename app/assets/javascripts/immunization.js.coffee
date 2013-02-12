@@ -111,5 +111,5 @@ class hQuery.Immunization extends hQuery.CodedEntry
   It indicates the reason an immunization was not administered.
   @returns {hQuery.NoImmunization}   Used to indicate reason an immunization was not administered.
   ###
-  refusalReason: -> new hQuery.NoImmunization @json['negationReason']?['code'], @json['negationReason']?['codeSystem']
+  refusalReason: -> new hQuery.NoImmunization @json['negationReason']?['code'], @json['negationReason']?['code_system']
  
