@@ -6,8 +6,8 @@ Gem::Specification.new do |s|
   s.description = "A javascript library abstraction for dealing with patients in hQuery map reduce functions"
   s.email = "talk@hquery.org"
   s.homepage = "http://github.com/hquery/patient_api"
-  s.authors = ["Marc Hadley", "Andy Gregorowicz", "Rob Dingwell"]
-  s.version = '1.0.0'
+  s.authors = ["Marc Hadley", "Andy Gregorowicz", "Rob Dingwell", "Andre Quina"]
+  s.version = '1.0.1'
 
   s.files = `git ls-files`.split("\n")
 end
