@@ -8,19 +8,19 @@
   "birthdate": -223262033,
   "maritalStatus": {
     "code": "M",
-    "codeSystem": "HL7"
+    "code_system": "HL7"
   },
   "religiousAffiliation": {
     "code": "1013",
-    "codeSystem": "HL7"
+    "code_system": "HL7"
   },
   "race": {
     "code": "2131-1",
-    "codeSystem": "CDC"
+    "code_system": "CDC"
   },
   "ethnicity": {
     "code": "2186-5",
-    "codeSystem": "CDC"
+    "code_system": "CDC"
   },
   "birthPlace": {
     "city": "Washington",
@@ -28,7 +28,7 @@
   },
   "confidentiality": {
     "code": "N",
-    "codeSystem": "HL7"
+    "code_system": "HL7"
   },
   "provider": {
     "providerEntity": {
@@ -79,7 +79,7 @@
         "name": "General Hospital",
         "code": {
           "code": "1155-1",
-          "codeSystem": "HL7 Healthcare Service Location"
+          "code_system": "HL7 Healthcare Service Location"
         },
         "addresses": [
           {
@@ -101,7 +101,7 @@
       },
       "transferTo": {
         "code": "444933003",
-        "codeSystem": "SNOMED-CT"
+        "code_system": "SNOMED-CT"
       },
       "time": 1268042997,
       "description": "Outpatient encounter",
@@ -109,7 +109,7 @@
       "dischargeDisposition": "Home",
       "admitType": {
         "code": "04",
-        "codeSystem": "regular"
+        "code_system": "regular"
       },
       "performer": {
         "organization": {
@@ -159,15 +159,15 @@
       "priority": 1,
       "ordinality": {
         "code": "8319008",
-        "codeSystem": "SNOMED-CT"
+        "code_system": "SNOMED-CT"
       },
       "severity": {
         "code": "371924009",
-        "codeSystem": "SNOMED-CT"
+        "code_system": "SNOMED-CT"
       },
       "problemStatus": {
         "code": "55561003",
-        "codeSystem": "SNOMED-CT"
+        "code_system": "SNOMED-CT"
       }
     }
   ],
@@ -211,7 +211,7 @@
       },
       "site": {
         "code": "71854001",
-        "codeSystem": "SNOMED-CT"
+        "code_system": "SNOMED-CT"
       },
       "time": 1073238725,
       "performer": {
@@ -223,7 +223,7 @@
       "description": "Colonscopy",
       "source": {
         "code": "158967008",
-        "codeSystem": "SNOMED-CT"
+        "code_system": "SNOMED-CT"
       },
       "incisionTime": 1073238725
     }
@@ -293,7 +293,7 @@
       },
       "negationReason": {
         "code": "IMMUNE",
-        "codeSystem": "HL7 No Immunization Reason"
+        "code_system": "HL7 No Immunization Reason"
       },
       "comment": "patient invincible"
     },
@@ -355,20 +355,20 @@
       "description": "Multivitamin",
       "reason": {
         "code": "195911009",
-        "codeSystem": "SNOMED-CT"
+        "code_system": "SNOMED-CT"
       },
       "brandName": "Centrum Silver",
       "route": {
         "code": "C38288",
-        "codeSystem": "NCI Thesaurus"
+        "code_system": "NCI Thesaurus"
       },
       "typeOfMedication": {
         "code": "329505003",
-        "codeSystem": "SNOMED-CT"
+        "code_system": "SNOMED-CT"
       },
       "statusOfMedication": {
         "code": "55561003",
-        "codeSystem": "SNOMED-CT"
+        "code_system": "SNOMED-CT"
       },
       "fulfillmentHistory": [
         {
@@ -416,11 +416,11 @@
       "comment": "Carries Epipen",
       "reaction": {
         "code": "414285001",
-        "codeSystem": "SNOMED-CT"
+        "code_system": "SNOMED-CT"
       },
       "severity": {
         "code": "371924009",
-        "codeSystem": "SNOMED-CT"
+        "code_system": "SNOMED-CT"
       }
     }
   ],
@@ -459,7 +459,7 @@
       "type": "result",
       "source": {
         "code": "patient reported",
-        "codeSystem": "SNOMED-CT"
+        "code_system": "SNOMED-CT"
       }
     }
   ],
@@ -472,7 +472,7 @@
       },
       "start_time": 1269762691,
       "end_time": 1269762693,
-      "anatomicalStructure" : {"code": "13648007", "codeSystem": "SNOMED-CT"}
+      "anatomicalStructure" : {"code": "13648007", "code_system": "SNOMED-CT"}
     }
   ]
 }

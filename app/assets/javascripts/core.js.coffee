@@ -254,7 +254,7 @@ class hQuery.Organization
 class hQuery.Facility extends hQuery.CodedValue
   constructor: (@json) ->
     if @json['code']?
-      super @json['code']['code'], @json['code']['codeSystem']
+      super @json['code']['code'], @json['code']['code_system']
     if @json['start_time']
       @_startDate = hQuery.dateFromUtcSeconds @json['start_time']
     if @json['end_time']
@@ -564,4 +564,4 @@ hQuery.createCodedValues = (jsonCodes) ->
   codedValues
 
 hQuery.createCodedValue = (json) ->
-  new hQuery.CodedValue json['code'], json['codeSystem'] if json?
+  new hQuery.CodedValue json['code'], json['code_system'] if json?
