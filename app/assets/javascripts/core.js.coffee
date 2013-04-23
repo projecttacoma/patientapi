@@ -342,7 +342,7 @@ class hQuery.CodedEntry
     @_type = hQuery.createCodedValues @json['codes']
     @_statusCode = @json['status_code']
     # id of the entry from the database
-    @id = @json['_id']
+    @id = "#{@json['_id']}"
     # id of the entry from the source document if available
     @source_id = @json['id']
     @_freeTextType = @json['description']
