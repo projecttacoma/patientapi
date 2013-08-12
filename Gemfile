@@ -7,7 +7,7 @@ gem 'rake'
 gem 'tilt'
 
 group :test do
-  gem 'minitest'
+  gem 'minitest', '~> 4.0'
   gem 'turn', :require => false
 
   platforms :ruby do

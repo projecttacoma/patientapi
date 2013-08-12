@@ -4,15 +4,18 @@ require 'sprockets'
 require 'tilt'
 require 'fileutils'
 
-task :default => [:test_units]
-$LOAD_PATH << File.expand_path("../test",__FILE__)
-desc "Run basic tests"
-Rake::TestTask.new("test_units") { |t|
-  t.pattern = 'test/unit/*_test.rb'
-  t.verbose = true
-  t.warning = false
-}
+task :default => [:test]
 
+desc "Run basic tests"
+Rake::TestTask.new(:test_unit) do |t|
+  t.libs << "test"
+  t.test_files = FileList['test/**/*_test.rb']
+  t.verbose = true
+end
+
+task :test => [:test_unit] do 
+
+end
 
 namespace :doc do
   desc "Generate JS from CoffeeScript"
