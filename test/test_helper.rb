@@ -1,9 +1,12 @@
-require 'bundler/setup'
-require 'test/unit'
 require 'tilt'
 require 'coffee_script'
 require 'sprockets'
 require 'execjs'
+
+require 'minitest/autorun'
+
+require 'bundler/setup'
+require 'test/unit'
 require 'turn'
 
 Tilt::CoffeeScriptTemplate.default_bare=true
