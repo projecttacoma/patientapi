@@ -3,4 +3,3 @@ tmp/
 .DS_Store
 doc/patient-api
 .gem
-Gemfile.lock
