@@ -66,7 +66,7 @@ class hQuery.Patient extends hQuery.Person
   @returns {Date} containing the patients birthdate
   ###
   birthtime: ->
-    hQuery.dateFromUtcSeconds @json['birthdate']
+    hQuery.dateFromUtcSeconds @json['birthdate'] if @json['birthdate']
     
   ###*
   @param (Date) date the date at which the patient age is calculated, defaults to now.
