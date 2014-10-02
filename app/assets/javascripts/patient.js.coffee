@@ -108,7 +108,7 @@ class hQuery.Patient extends hQuery.Person
   ###
   race: -> 
     if @json['race']
-      return hQuery.createCodedValue @json['race']
+      return hQuery.createCodedValue code: @json['race'], code_system: 'CDC Race'
   
   ###*
   @returns {CodedValue} of the ethnicity of the patient
@@ -116,7 +116,7 @@ class hQuery.Patient extends hQuery.Person
   ###
   ethnicity: -> 
     if @json['ethnicity']
-      return hQuery.createCodedValue @json['ethnicity']
+      return hQuery.createCodedValue code: @json['ethnicity'], code_system: 'CDC Ethnicity'
   
   ###*
   @returns {CodedValue} This is the code specifying the level of confidentiality of the document.
