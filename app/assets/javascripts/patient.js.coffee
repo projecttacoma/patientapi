@@ -108,7 +108,7 @@ class hQuery.Patient extends hQuery.Person
   ###
   race: -> 
     if @json['race']
-      return hQuery.createCodedValue @json['race']
+      return hQuery.createCodedValue code: @json['race'], code_system: 'CDC Race'
   
   ###*
   @returns {CodedValue} of the ethnicity of the patient
