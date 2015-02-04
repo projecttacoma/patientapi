@@ -28,6 +28,29 @@ class hQuery.MedicalEquipment extends hQuery.CodedEntry
   anatomicalStructure: -> hQuery.createCodedValue @json['anatomicalStructure']
 
   ###*
+  @returns {CodedValue}
+  ###
+  anatomical_approach: -> new hQuery.createCodedValue @json['anatomical_approach']
+ 
+  ###*
+  @returns {CodedValue}
+  ###
+  anatomical_target: ->
+    #backwards compatibility with older patient records.  anatomicalStructure was used for anatomical_target
+    at = @json['anatomical_target']
+    if at? then new hQuery.CodedValue(at) else @anatomicalStructure()
+
+  ###*
+  @returns {CodedValue}
+  ###
+  method: ->  new hQuery.createCodedValue @json['method']
+ 
+  ###*
+  @returns {CodedValue}
+  ###
+  reaction: ->  new hQuery.createCodedValue @json['reaction']
+
+  ###*
   @returns {Date} The actual or intended removal time of the device.
   ###
   removalTime: -> hQuery.dateFromUtcSeconds @json['removalTime'] if @json['removalTime']

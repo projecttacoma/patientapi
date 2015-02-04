@@ -173,6 +173,18 @@ class hQuery.Medication  extends hQuery.CodedEntry
   ###
   indicateMedicationStop: -> hQuery.dateFromUtcSeconds @json['end_time']
 
+
+  ###*
+  @returns {Date}
+  ###
+  activeDateTime: -> hQuery.dateFromUtcSeconds @json['active_datetime']  if @json['active_datetime']
+
+  ###*
+  @returns {Date}
+  ###
+  signedDateTime: -> hQuery.dateFromUtcSeconds @json['signed_datetime']  if @json['signed_datetime']
+
+
   administrationTiming: -> new hQuery.AdministrationTiming @json['administrationTiming'] if @json['administrationTiming']
 
   ###*
@@ -197,6 +209,12 @@ class hQuery.Medication  extends hQuery.CodedEntry
   ###
   site: -> hQuery.createCodedValue @json['site'] if @json['site']
 
+  ###*
+  @returns {CodedValue}
+  ###
+  anatomical_appraoch: -> 
+    #backwards compaibility for older patient records
+    if @json['anatomical_appraoch'] then hQuery.createCodedValue @json['anatomical_appraoch'] else @site()
   ###*
   @returns {hQuery.DoseRestriction}
   ###
@@ -238,6 +256,11 @@ class hQuery.Medication  extends hQuery.CodedEntry
   deliveryMethod: -> hQuery.createCodedValue @json['deliveryMethod']
 
   ###*
+  @returns {CodedValue}
+  ###
+  method: -> hQuery.createCodedValue @json['method']
+
+  ###*
   @returns {hQuery.MedicationInformation}
   ###
   medicationInformation: -> new hQuery.MedicationInformation @json
@@ -265,6 +288,7 @@ class hQuery.Medication  extends hQuery.CodedEntry
   ###
   cumulativeMedicationDuration: -> @json['cumulativeMedicationDuration']
 
+  refills: -> @json['refills']
   ###*
   @returns {Array} an array of {@link FulFillment} objects
   ###

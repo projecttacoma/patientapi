@@ -86,3 +86,18 @@ class hQuery.Condition extends hQuery.CodedEntry
   @returns {CodedValue} 
   ###
   severity: -> hQuery.createCodedValue @json['severity']
+ 
+  ###*
+  @returns {CodedValue}
+  ###
+  reaction: ->  new hQuery.createCodedValue @json['reaction']
+
+  ###*
+  @returns {CodedValue}
+  ###
+  laterality: -> hQuery.createCodedValue @json['laterality']
+
+  ###*
+  @returns {CodedValue}
+  ###
+  anatomical_target: -> hQuery.createCodedValue @json['anatomical_target']

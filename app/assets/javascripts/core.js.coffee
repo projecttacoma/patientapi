@@ -470,6 +470,16 @@ class hQuery.CodedEntry
   ###
   reason: -> hQuery.createCodedValue @json['reason']
   
+  ###*
+  @returns {CodedEntryList}
+  ###
+  provider_preference: ->  new hQuery.CodedEntryList @json['provider_preference']
+
+
+  ###*
+  @returns {CodedEntryList}
+  ###
+  patient_preference: ->  new hQuery.CodedEntryList @json['patient_preference']
 
 ###*
 @class Represents a list of hQuery.CodedEntry instances. Offers utility methods for matching
