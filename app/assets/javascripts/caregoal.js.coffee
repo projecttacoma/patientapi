@@ -16,3 +16,14 @@ class hQuery.CareGoal extends hQuery.CodedEntry
   
   constructor: (@json) ->
     super(@json)
+
+  ###*
+  @returns {CodedEntryList}
+  ###
+  related_to: ->  new hQuery.createCodedEntry @json['related_to']
+
+ 
+  ###*
+  @returns {CodedEntryList}
+  ###
+  target_outcome: ->  new hQuery.createCodedEntry @json['target_outcome']

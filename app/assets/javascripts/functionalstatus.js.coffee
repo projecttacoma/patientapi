@@ -44,4 +44,14 @@ class hQuery.FunctionalStatus extends hQuery.CodedEntry
   ###
   source: ->
     hQuery.createCodedValue @json["source"]
-  
+
+  ###*
+  @returns {CodedValue}
+  ###
+  reaction: -> hQuery.createCodedValue @json['reaction']
+
+  ###*
+  @returns {CodedValue}
+  ###
+  method: -> hQuery.createCodedValue @json['method']
+   

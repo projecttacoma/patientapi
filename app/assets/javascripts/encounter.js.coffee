@@ -73,7 +73,15 @@ class hQuery.Encounter extends hQuery.CodedEntry
     return 0 unless @startDate()? && @endDate()?
     Math.floor((@endDate() - @startDate()) / (1000 * 60 * 60 * 24))
 
-
+  ###*
+  @returns {CodedValue}
+  ###
+  method: ->  new hQuery.createCodedValue @json['method']
+ 
+  ###*
+  @returns {CodedValue}
+  ###
+  reaction: ->  new hQuery.createCodedValue @json['reaction']
   ###*
   @returns {CodedValue}
   ###
