@@ -29,20 +29,20 @@ class hQuery.CauseOfDeath
 This section is used to describe a patients problems/conditions. The types of conditions
 described have been constrained to the SNOMED CT Problem Type code set. An unbounded
 number of treating providers for the particular condition can be supplied.
-@exports Condition as hQuery.Condition 
+@exports Condition as hQuery.Condition
 @augments hQuery.CodedEntry
-###  
+###
 class hQuery.Condition extends hQuery.CodedEntry
-  
+
   constructor: (@json) ->
     super(@json)
-  
+
   ###*
    @returns {Array, hQuery.Provider} an array of providers for the condition
   ###
   providers: ->
-    for  provider in @json['treatingProviders'] 
-       new Provider provider 
+    for  provider in @json['treatingProviders']
+      new Provider provider
 
   ###*
   Diagnosis Priority
@@ -61,32 +61,32 @@ class hQuery.Condition extends hQuery.CodedEntry
   @returns {int}
   ###
   ageAtOnset: -> @json['ageAtOnset']
-  
-  
+
+
   ###*
   cause of death
   @returns {hQuery.CauseOfDeath}
   ###
   causeOfDeath: -> new hQuery.CauseOfDeath @json['causeOfDeath'] if  @json['causeOfDeath']
-  
+
   ###*
   problem status
   @returns {hQuery.CodedValue}
   ###
   problemStatus: -> hQuery.createCodedValue  @json['problemStatus']
-  
+
   ###*
   comment
   @returns {String}
   ###
   comment: -> @json['comment']
-  
+
   ###*
   This is a description of the level of the severity of the condition.
-  @returns {CodedValue} 
+  @returns {CodedValue}
   ###
   severity: -> hQuery.createCodedValue @json['severity']
- 
+
   ###*
   @returns {CodedValue}
   ###
@@ -100,4 +100,4 @@ class hQuery.Condition extends hQuery.CodedEntry
   ###*
   @returns {CodedValue}
   ###
-  anatomical_target: -> hQuery.createCodedValue @json['anatomical_target']
+  anatomicalLocation: -> hQuery.createCodedValue @json['anatomicalLocation']

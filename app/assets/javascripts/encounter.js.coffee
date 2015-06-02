@@ -5,7 +5,7 @@ this.hQuery ||= {}
 
 
 # =require core.coffee
-	
+
 ###*
 An Encounter is an interaction, regardless of the setting, between a patient and a
 practitioner who is vested with primary responsibility for diagnosing, evaluating,
@@ -16,7 +16,7 @@ patient at a given contact, exercising independent judgment.
 @class An Encounter is an interaction, regardless of the setting, between a patient and a
 practitioner
 @augments hQuery.CodedEntry
-@exports Encounter as hQuery.Encounter 
+@exports Encounter as hQuery.Encounter
 ###
 class hQuery.Encounter extends hQuery.CodedEntry
   constructor: (@json) ->
@@ -24,19 +24,19 @@ class hQuery.Encounter extends hQuery.CodedEntry
     @_admitTime = hQuery.dateFromUtcSeconds @json['admitTime'] if @json['admitTime']
     @_dischargeTime = hQuery.dateFromUtcSeconds @json['dischargeTime'] if @json['dischargeTime']
     @_facility = new hQuery.Facility @json['facility'] if @json['facility']
-  	
+
   ###*
   @returns {String}
   ####
   dischargeDisposition: -> @json['dischargeDisposition']
-  
+
   ###*
   A code indicating the priority of the admission (e.g., Emergency, Urgent, Elective, et cetera) from
   National Uniform Billing Committee (NUBC)
   @returns {CodedValue}
   ###
   admitType: -> hQuery.createCodedValue @json['admitType']
-  
+
   ###*
   Date and time at which the patient was admitted for the encounter
   @returns {Date}
@@ -48,12 +48,12 @@ class hQuery.Encounter extends hQuery.CodedEntry
   @returns {Date}
   ###
   dischargeTime: -> @_dischargeTime
-  
+
   ###*
   @returns {hQuery.Actor}
   ###
   performer: -> new hQuery.Actor @json['performer'] if @json['performer']
-  
+
   ###*
   @returns {hQuery.Organization}
   ###
@@ -65,7 +65,7 @@ class hQuery.Encounter extends hQuery.CodedEntry
   @returns {hQuery.CodedEntry}
   ###
   reasonForVisit: -> new hQuery.CodedEntry @json['reason'] if @json['reason']
-  
+
   ###*
   @returns {Integer}
   ###
@@ -77,7 +77,7 @@ class hQuery.Encounter extends hQuery.CodedEntry
   @returns {CodedValue}
   ###
   method: ->  new hQuery.createCodedValue @json['method']
- 
+
   ###*
   @returns {CodedValue}
   ###
@@ -86,7 +86,7 @@ class hQuery.Encounter extends hQuery.CodedEntry
   @returns {CodedValue}
   ###
   transferTo: -> hQuery.createCodedValue @json['transferTo']
-  
+
   ###*
   @returns {CodedValue}
   ###
