@@ -29,28 +29,28 @@ class hQuery.Supports
   @returns {DateRange}
   ###
   supportDate: -> new hQuery.DateRange @json['supportDate']
-    
+
   ###*
-  @returns {Person} 
+  @returns {Person}
   ###
   guardian: -> new hQuery.Person @json['guardian']
-  
+
   ###*
   @returns {String}
   ###
   guardianSupportType: -> @json['guardianSupportType']
-  
+
   ###*
   @returns {Person}
   ###
   contact: -> new hQuery.Person @json['contact']
-  
+
   ###*
   @returns {String}
   ###
   contactSupportType: -> @json['guardianSupportType']
-  
-  
+
+
 ###*
 @class Representation of a patient
 @augments hQuery.Person
@@ -67,7 +67,7 @@ class hQuery.Patient extends hQuery.Person
   ###
   birthtime: ->
     hQuery.dateFromUtcSeconds @json['birthdate'] if @json['birthdate']
-    
+
   ###*
   @param (Date) date the date at which the patient age is calculated, defaults to now.
   @returns {number} the patient age in years
@@ -76,7 +76,7 @@ class hQuery.Patient extends hQuery.Person
     oneDay = 24*60*60*1000;
     oneYear = 365*oneDay;
     return (date.getTime()-this.birthtime().getTime())/oneYear;
-    
+
   ###*
   @returns {CodedValue} the domestic partnership status of the patient
   The following HL7 codeset is used:
@@ -90,53 +90,53 @@ class hQuery.Patient extends hQuery.Person
   T  Domestic Partner
   W  Widowed
   ###
-  maritalStatus: -> 
+  maritalStatus: ->
     if @json['maritalStatus']
       return hQuery.createCodedValue @json['maritalStatus']
-  
+
   ###*
   @returns {CodedValue}  of the spiritual faith affiliation of the patient
   It uses the HL7 codeset.  http://www.hl7.org/memonly/downloads/v3edition.cfm#V32008
   ###
-  religiousAffiliation: -> 
+  religiousAffiliation: ->
     if @json['religiousAffiliation']
       return hQuery.createCodedValue @json['religiousAffiliation']
-  
+
   ###*
   @returns {CodedValue}  of the race of the patient
   CDC codes:  http://phinvads.cdc.gov/vads/ViewCodeSystemConcept.action?oid=2.16.840.1.113883.6.238&code=1000-9
   ###
-  race: -> 
+  race: ->
     if @json['race']
       return hQuery.createCodedValue code: @json['race'], code_system: 'CDC Race'
-  
+
   ###*
   @returns {CodedValue} of the ethnicity of the patient
   CDC codes:  http://phinvads.cdc.gov/vads/ViewCodeSystemConcept.action?oid=2.16.840.1.113883.6.238&code=1000-9
   ###
-  ethnicity: -> 
+  ethnicity: ->
     if @json['ethnicity']
       return hQuery.createCodedValue code: @json['ethnicity'], code_system: 'CDC Ethnicity'
-  
+
   ###*
   @returns {CodedValue} This is the code specifying the level of confidentiality of the document.
   HL7 Confidentiality Code (2.16.840.1.113883.5.25)
   ###
-  confidentiality: -> 
+  confidentiality: ->
     if  @json['confidentiality']
       return hQuery.createCodedValue @json['confidentiality']
-  
+
   ###*
   @returns {Address} of the location where the patient was born
   ###
-  birthPlace: -> 
+  birthPlace: ->
     new hQuery.Address @json['birthPlace']
-  
+
   ###*
   @returns {Supports} information regarding key support contacts relative to healthcare decisions, including next of kin
   ###
   supports: -> new hQuery.Supports @json['supports']
-  
+
   ###*
   @returns {Organization}
   ###
@@ -146,8 +146,8 @@ class hQuery.Patient extends hQuery.Person
   @returns {Provider}  the providers associated with the patient
   ###
   provider: -> new hQuery.Provider @json['provider']
-  
-   
+
+
   ###*
   @returns {hQuery.CodedEntryList} A list of {@link hQuery.LanguagesSpoken} objects
   Code from http://www.ietf.org/rfc/rfc4646.txt representing the name of the human language
@@ -173,7 +173,7 @@ class hQuery.Patient extends hQuery.Person
       for encounter in @json['encounters']
         list.pushIfUsable(new hQuery.Encounter(encounter))
     list
-    
+
   ###*
   @returns {hQuery.CodedEntryList} A list of {@link Medication} objects
   ###
@@ -183,7 +183,7 @@ class hQuery.Patient extends hQuery.Person
       for medication in @json['medications']
         list.pushIfUsable(new hQuery.Medication(medication))
     list
-      
+
 
   ###*
   @returns {hQuery.CodedEntryList} A list of {@link Condition} objects
@@ -204,7 +204,7 @@ class hQuery.Patient extends hQuery.Person
       for procedure in @json['procedures']
         list.pushIfUsable(new hQuery.Procedure(procedure))
     list
-      
+
   ###*
   @returns {hQuery.CodedEntryList} A list of {@link Result} objects
   ###
@@ -234,8 +234,8 @@ class hQuery.Patient extends hQuery.Person
       for immunization in @json['immunizations']
         list.pushIfUsable(new hQuery.Immunization(immunization))
     list
-    
-    
+
+
   ###*
   @returns {hQuery.CodedEntryList} A list of {@link Allergy} objects
   ###
@@ -255,7 +255,7 @@ class hQuery.Patient extends hQuery.Person
       for pregnancy in @json['pregnancies']
         list.pushIfUsable(new hQuery.Pregnancy(pregnancy))
     list
-    
+
   ###*
   @returns {hQuery.CodedEntryList} A list of {@link Socialhistory} objects
   ###

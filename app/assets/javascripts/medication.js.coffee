@@ -38,11 +38,11 @@ class hQuery.AdministrationTiming
   @returns {hQuery.Scalar}
   ###
   period: -> new hQuery.Scalar @json['period'] if @json['period']
-  
+
   ###*
-  Indicates whether it is the interval (time between dosing), or frequency 
-  (number of doses in a time period) that is important. If instititutionSpecified is not 
-  present or is set to false, then the time between dosing is important (every 8 hours). 
+  Indicates whether it is the interval (time between dosing), or frequency
+  (number of doses in a time period) that is important. If instititutionSpecified is not
+  present or is set to false, then the time between dosing is important (every 8 hours).
   If true, then the frequency of administration is important (e.g., 3 times per day).
   @returns {Boolean}
   ###
@@ -54,7 +54,7 @@ class hQuery.AdministrationTiming
 ###
 class hQuery.DoseRestriction
   constructor: (@json) ->
-  numerator: -> new hQuery.Scalar @json['numerator'] if @json['numerator'] 
+  numerator: -> new hQuery.Scalar @json['numerator'] if @json['numerator']
   denominator: -> new hQuery.Scalar @json['denominator'] if @json['denominator']
 
 
@@ -78,7 +78,7 @@ class hQuery.Fulfillment
 ###
 class hQuery.OrderInformation
   constructor: (@json) ->
-  
+
   orderNumber: -> @json['orderNumber']
   fills: -> @json['fills']
   quantityOrdered: -> new hQuery.Scalar @json['quantityOrdered'] if @json['quantityOrdered']
@@ -153,7 +153,7 @@ class hQuery.StatusOfMedication extends hQuery.CodedValue
 class hQuery.Medication  extends hQuery.CodedEntry
   constructor: (@json) ->
     super(@json)
-  
+
   ###*
   @returns {String}
   ####
@@ -189,7 +189,7 @@ class hQuery.Medication  extends hQuery.CodedEntry
 
   ###*
   @returns {CodedValue}  Contains routeCode or adminstrationUnitCode information.
-    Route code shall have a a value drawn from FDA route of adminstration,
+    Route code shall have a a value drawn from FDA route of administration,
     and indicates how the medication is received by the patient.
     See http://www.fda.gov/Drugs/DevelopmentApprovalProcess/UCM070829
     The administration unit code shall have a value drawn from the FDA
@@ -212,9 +212,9 @@ class hQuery.Medication  extends hQuery.CodedEntry
   ###*
   @returns {CodedValue}
   ###
-  anatomical_appraoch: -> 
-    #backwards compaibility for older patient records
-    if @json['anatomical_appraoch'] then hQuery.createCodedValue @json['anatomical_appraoch'] else @site()
+  anatomicalApproach: ->
+    #backwards compatibility for older patient records
+    if @json['anatomicalApproach'] then hQuery.createCodedValue @json['anatomicalApproach'] else @site()
   ###*
   @returns {hQuery.DoseRestriction}
   ###
@@ -281,7 +281,7 @@ class hQuery.Medication  extends hQuery.CodedEntry
   @returns {String} free text instructions to the patient
   ###
   patientInstructions: -> @json['patientInstructions']
-  
+
   ###*
   The duration over which this medication has been active. For example, 5 days.
   @returns {Hash} with two keys: unit and scalar
@@ -295,7 +295,7 @@ class hQuery.Medication  extends hQuery.CodedEntry
   fulfillmentHistory: ->
     for order in @json['fulfillmentHistory']
       new hQuery.Fulfillment order
-      
+
   ###*
   @returns {Array} an array of {@link OrderInformation} objects
   ###
