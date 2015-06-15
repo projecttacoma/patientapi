@@ -18,12 +18,16 @@ class hQuery.CareGoal extends hQuery.CodedEntry
     super(@json)
 
   ###*
-  @returns {CodedEntryList}
+  @returns {CodedValue}
   ###
-  relatedTo: ->  new hQuery.createCodedEntry @json['relatedTo']
+  relatedTo: ->  hQuery.createCodedValue @json['relatedTo']
 
 
   ###*
-  @returns {CodedEntryList}
+  @returns {CodedValue}
   ###
-  targetOutcome: ->  new hQuery.createCodedEntry @json['targetOutcome']
+  targetOutcome: ->
+    if @json['targetOutcome']?['unit']?
+      new hQuery.Scalar @json['targetOutcome']
+    else if @json['targetOutcome']?
+      hQuery.createCodedValue @json['targetOutcome']
