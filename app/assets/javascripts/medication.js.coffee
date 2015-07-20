@@ -200,9 +200,15 @@ class hQuery.Medication  extends hQuery.CodedEntry
   route: -> hQuery.createCodedValue @json['route']
 
   ###*
-  @returns {hQuery.Scalar} the dose
+  @returns {Hash} with two keys: units and scalar
   ###
-  dose: -> new hQuery.Scalar @json['dose'] if @json['dose']
+  dose: ->
+    # In Bonnie, dose can be specified in two different contexts: CMD specification and as a field value; the
+    # CMD version used 'unit' and 'value', while the field value version uses 'units' and 'scalar'; we want to
+    # consolidate the versions, so here we convert everything to the field value style
+    if @json.dose
+      units: @json.dose.units || @json.dose.unit
+      scalar: @json.dose.scalar || @json.dose.value
 
   ###*
   @returns {CodedValue}
