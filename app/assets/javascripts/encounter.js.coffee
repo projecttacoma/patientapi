@@ -91,3 +91,13 @@ class hQuery.Encounter extends hQuery.CodedEntry
   @returns {CodedValue}
   ###
   transferFrom: -> hQuery.createCodedValue @json['transferFrom']
+
+  ###*
+  @returns {String}
+  ###
+  diagnosis: -> @json['diagnosis']
+
+  ###*
+  @returns {String}
+  ###
+  principalDiagnosis: -> @json['principalDiagnosis']
