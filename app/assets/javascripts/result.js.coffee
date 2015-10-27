@@ -49,9 +49,4 @@ class hQuery.Result extends hQuery.CodedEntry
   ###*
   @returns {String}
   ###
-  relationshipToPatient: -> @json['relationshipToPatient']
-
-  ###*
-  @returns {String}
-  ###
   comment: -> @json['comment']
