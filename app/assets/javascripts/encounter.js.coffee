@@ -95,9 +95,9 @@ class hQuery.Encounter extends hQuery.CodedEntry
   ###*
   @returns {String}
   ###
-  diagnosis: -> @json['diagnosis']
+  diagnosis: -> hQuery.createCodedValue @json['diagnosis']
 
   ###*
   @returns {String}
   ###
-  principalDiagnosis: -> @json['principalDiagnosis']
+  principalDiagnosis: -> hQuery.createCodedValue @json['principalDiagnosis']
