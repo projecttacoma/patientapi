@@ -24,8 +24,3 @@ class hQuery.FamilyHistory extends hQuery.CodedEntry
   @returns {CodedValue}
   ###
   onsetAge: -> new hQuery.Scalar @json['onsetAge']
-
-  ###*
-  @returns {CodedValue}
-  ###
-  recordedDatetime: -> hQuery.dateFromUtcSeconds @json['recordedDatetime']
