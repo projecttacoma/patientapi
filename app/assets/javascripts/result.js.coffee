@@ -39,4 +39,14 @@ class hQuery.Result extends hQuery.CodedEntry
   ###*
   @returns {String}
   ###
+  referenceRangeHigh: -> @json['referenceRangeHigh']
+
+  ###*
+  @returns {String}
+  ###
+  referenceRangeLow: -> @json['referenceRangeLow']
+
+  ###*
+  @returns {String}
+  ###
   comment: -> @json['comment']

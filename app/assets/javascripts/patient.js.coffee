@@ -4,6 +4,7 @@
 # =require encounter.js.coffee
 # =require procedure.js.coffee
 # =require communication.js.coffee
+# =require familyhistory.js.coffee
 # =require result.js.coffee
 # =require immunization.js.coffee
 # =require allergy.js.coffee
@@ -214,6 +215,16 @@ class hQuery.Patient extends hQuery.Person
     if @json['communications']
       for communication in @json['communications']
         list.pushIfUsable(new hQuery.Communication(communication))
+    list
+
+  ###*
+  @returns {hQuery.CodedEntryList} A list of {@link FamilyHistory} objects
+  ###
+  family_history: ->
+    list = new hQuery.CodedEntryList
+    if @json['family_history']
+      for familyhistory in @json['family_history']
+        list.pushIfUsable(new hQuery.FamilyHistory(familyhistory))
     list
 
   ###*

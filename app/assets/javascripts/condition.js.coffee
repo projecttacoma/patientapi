@@ -100,4 +100,4 @@ class hQuery.Condition extends hQuery.CodedEntry
   ###*
   @returns {CodedValue}
   ###
-  anatomicalLocation: -> hQuery.createCodedValue @json['anatomicalLocation']
+  anatomicalLocation: -> hQuery.createCodedValue @json['anatomical_location']
