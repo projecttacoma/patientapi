@@ -113,6 +113,16 @@ class hQuery.Patient extends hQuery.Person
       return hQuery.createCodedValue code: @json['race'], code_system: 'CDC Race'
 
   ###*
+  @returns {CodedValue} of the payer of the patient
+  SOP codes: https://www.health.ny.gov/statistics/sparcs/sysdoc/appp.htm
+  ###
+  payer: ->
+    if @json['insurance_providers']?.length
+      ip = @json['insurance_providers'][0]
+      if ip.codes && ip.codes.SOP?.length
+        return hQuery.createCodedValue code: ip.codes.SOP[0], code_system: 'SOP'
+
+  ###*
   @returns {CodedValue} of the ethnicity of the patient
   CDC codes:  http://phinvads.cdc.gov/vads/ViewCodeSystemConcept.action?oid=2.16.840.1.113883.6.238&code=1000-9
   ###
