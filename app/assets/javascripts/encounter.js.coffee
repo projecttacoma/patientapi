@@ -93,11 +93,16 @@ class hQuery.Encounter extends hQuery.CodedEntry
   transferFrom: -> hQuery.createCodedValue @json['transferFrom']
 
   ###*
-  @returns {String}
+  @returns {CodedValue}
   ###
   diagnosis: -> hQuery.createCodedValue @json['diagnosis']
 
   ###*
-  @returns {String}
+  @returns {CodedValue|CodedValue[]}
   ###
-  principalDiagnosis: -> hQuery.createCodedValue @json['principalDiagnosis']
+  principalDiagnosis: ->
+    if @json['principalDiagnosis']?['codes']
+      # Support for principal diagnosis with multiple codes
+      hQuery.createCodedValues @json['principalDiagnosis']['codes']
+    else
+      hQuery.createCodedValue @json['principalDiagnosis']
