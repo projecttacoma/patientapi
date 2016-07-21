@@ -15,6 +15,7 @@
 # =require caregoal.js.coffee
 # =require medicalequipment.js.coffee
 # =require functionalstatus.js.coffee
+# =require careexperience.js.coffee
 
 ###*
 @namespace scoping into the hquery namespace
@@ -235,6 +236,16 @@ class hQuery.Patient extends hQuery.Person
     if @json['family_history']
       for familyhistory in @json['family_history']
         list.pushIfUsable(new hQuery.FamilyHistory(familyhistory))
+    list
+
+  ###*
+  @returns {hQuery.CodedEntryList} A list of {@link CareExperience} objects
+  ###
+  careExperiences: ->
+    list = new hQuery.CodedEntryList
+    if @json['care_experiences']
+      for care_experience in @json['care_experiences']
+        list.pushIfUsable(new hQuery.CareExperience(care_experience))
     list
 
   ###*
