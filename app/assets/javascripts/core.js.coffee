@@ -481,6 +481,12 @@ class hQuery.CodedEntry
   ###
   patientPreference: ->  new hQuery.CodedEntryList @json['patientPreference']
 
+  ###*
+  The health record field is the location within an electronic record where the data should be found
+  @returns {CodedValue}
+  ###
+  healthRecordField: ->  hQuery.createCodedValue @json['health_record_field']
+
 ###*
 @class Represents a list of hQuery.CodedEntry instances. Offers utility methods for matching
 entries based on codes and date ranges

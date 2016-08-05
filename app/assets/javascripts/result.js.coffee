@@ -50,3 +50,11 @@ class hQuery.Result extends hQuery.CodedEntry
   @returns {String}
   ###
   comment: -> @json['comment']
+
+  ###*
+  The resulting status of a procedure as defined in the QDM documentation. This is different
+  than the status_code associated with the `CodedEntry` object, which relates to the data criteria
+  status as defined in health-data-standards/lib/hqmf-model/data_criteria.json.
+  @returns {CodedValue}
+  ###
+  qdmStatus: -> hQuery.createCodedValue  @json['qdm_status']

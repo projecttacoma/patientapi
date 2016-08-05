@@ -83,3 +83,11 @@ class hQuery.Procedure extends hQuery.CodedEntry
   @returns {CodedValue}
   ###
   radiationDuration: ->  new hQuery.createCodedValue @json['radiationDuration']
+
+  ###*
+  The resulting status of a procedure as defined in the QDM documentation. This is different
+  than the status_code associated with the `CodedEntry` object, which relates to the data criteria
+  status as defined in health-data-standards/lib/hqmf-model/data_criteria.json.
+  @returns {CodedValue}
+  ###
+  qdmStatus: ->  new hQuery.createCodedValue @json['qdm_status']
