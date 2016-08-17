@@ -188,6 +188,22 @@ class hQuery.Medication  extends hQuery.CodedEntry
   administrationTiming: -> new hQuery.AdministrationTiming @json['administrationTiming'] if @json['administrationTiming']
 
   ###*
+  This is used for Medicaton, Order. It is the total number of times a dose of a particular
+  medication can be administered. This, coupled with the administrationTiming will
+  give the cumulative medication duration.
+  E.g.
+    allowedAdministrations = 90 doses
+    administrationTiming = 1 dose / 12 hours
+    cumulativeMedicationDuration = allowedAdministrations / administrationTiming * (time conversion)
+    cumulativeMedicationDuration = (90 doses) * (12 hours)/(1 dose) * (1 day)/(24 hours) = 45 days
+  Medication, Order can't use fulfillmentHistory because the fulfillment of the 
+  medication has not yet happened.
+  This corresponds to 'repeatNumber' in the QRDA representation
+  @returns {Integer}
+  ###
+  allowedAdministrations: -> @json['allowedAdministrations']
+
+  ###*
   @returns {CodedValue}  Contains routeCode or adminstrationUnitCode information.
     Route code shall have a a value drawn from FDA route of administration,
     and indicates how the medication is received by the patient.
