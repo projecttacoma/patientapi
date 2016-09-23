@@ -14,3 +14,8 @@ This represents all care experience.
 class hQuery.Assessment extends hQuery.CodedEntry
   constructor: (@json) ->
     super(@json)
+
+  ###*
+  @returns {CodedValue}
+  ###
+  method: -> hQuery.createCodedValue @json['method']
