@@ -17,6 +17,8 @@
 # =require functionalstatus.js.coffee
 # =require careexperience.js.coffee
 # =require assessment.js.coffee
+# =require adverse_event.js.coffee
+# =require allergy_intolerance.js.coffee
 
 ###*
 @namespace scoping into the hquery namespace
@@ -348,4 +350,24 @@ class hQuery.Patient extends hQuery.Person
     if @json['functional_statuses']
       for fs in @json['functional_statuses']
         list.pushIfUsable(new hQuery.FunctionalStatus(fs))
+    list
+
+  ###*
+  @returns {hQuery.CodedEntryList} A list of {@link AllergyIntolerance} objects
+  ###
+  allergiesIntolerances: ->
+    list = new hQuery.CodedEntryList
+    if @json['allergies_intolerances']
+      for allergy_intolerance in @json['allergies_intolerances']
+        list.pushIfUsable(new hQuery.AllergyIntolerance(allergy_intolerance))
+    list
+
+  ###*
+  @returns {hQuery.CodedEntryList} A list of {@link AdverseEvent} objects
+  ###
+  adverseEvents: ->
+    list = new hQuery.CodedEntryList
+    if @json['adverse_events']
+      for adverse_event in @json['adverse_events']
+        list.pushIfUsable(new hQuery.AdverseEvent(adverse_event))
     list
