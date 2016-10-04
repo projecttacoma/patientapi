@@ -222,9 +222,26 @@ class hQuery.Medication  extends hQuery.CodedEntry
     # In Bonnie, dose can be specified in two different contexts: CMD specification and as a field value; the
     # CMD version used 'unit' and 'value', while the field value version uses 'units' and 'scalar'; we want to
     # consolidate the versions, so here we convert everything to the field value style
+    # in QDM 5.0, this is now 'dosage'. This is only changed in the Bonnie view.
     if @json.dose
       units: @json.dose.units || @json.dose.unit
       scalar: @json.dose.scalar || @json.dose.value
+
+  ###*
+  @returns {Hash} with two keys: units and scalar
+  The quantity (amount) of therapeutic agent that was provided to a patient (i.e., number of doses, number of tablets or pills, volume of medication)
+   * Used while the patient was on the given medication.
+   * Actually administered to a patient.
+   * Indicated to be given during a procedure, diagnostic test, or medication or substance administration.
+   * Dispensed to a patient to be taken at a later time.
+   * Indicated to be given to a patient.
+   * Recommended to be taken or administered to a patient.
+  ###
+  supply: ->
+    # QDM 5.0 disambiguates dose to be 'dosage' or 'supply'. For this reason, supply uses the same form as dose does.
+    if @json.supply
+      units: @json.supply.units || @json.supply.unit
+      scalar: @json.supply.scalar || @json.supply.value
 
   ###*
   @returns {CodedValue}
