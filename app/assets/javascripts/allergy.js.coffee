@@ -9,6 +9,8 @@ this.hQuery ||= {}
 @class
 @augments hQuery.CodedEntry
 @exports Allergy as hQuery.Allergy
+
+This is used for QDM 5.0 allergy/intollerance. The only fields used are the adverseEventType and the severity.
 ###
 class hQuery.Allergy  extends hQuery.CodedEntry
   constructor: (@json) ->

@@ -18,7 +18,6 @@
 # =require careexperience.js.coffee
 # =require assessment.js.coffee
 # =require adverse_event.js.coffee
-# =require allergy_intolerance.js.coffee
 
 ###*
 @namespace scoping into the hquery namespace
