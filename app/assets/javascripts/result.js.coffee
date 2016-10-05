@@ -58,3 +58,10 @@ class hQuery.Result extends hQuery.CodedEntry
   @returns {CodedValue}
   ###
   qdmStatus: -> hQuery.createCodedValue  @json['qdm_status']
+
+  ###*
+  @returns {Date} The time the result report is generated and saved in the database.
+  QDM 5.0 update for Laboratory Test, Performed
+  ###
+  resultDateTime: ->
+    hQuery.dateFromUtcSeconds @json['result_date_time'] if @json['result_date_time']
