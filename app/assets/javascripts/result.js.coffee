@@ -33,16 +33,19 @@ class hQuery.Result extends hQuery.CodedEntry
 
   ###*
   @returns {String}
+  NOT used for QDM 5.0 referenceRange
   ###
   referenceRange: -> @json['referenceRange']
 
   ###*
   @returns {String}
+  Used for QDM 5.0 referenceRange
   ###
   referenceRangeHigh: -> @json['referenceRangeHigh']
 
   ###*
   @returns {String}
+  Used for QDM 5.0 referenceRange
   ###
   referenceRangeLow: -> @json['referenceRangeLow']
 

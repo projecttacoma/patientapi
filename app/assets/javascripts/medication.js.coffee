@@ -241,7 +241,7 @@ class hQuery.Medication  extends hQuery.CodedEntry
     # QDM 5.0 disambiguates dose to be 'dosage' or 'supply'. For this reason, supply uses the same form as dose does.
     if @json.supply
       units: @json.supply.units || @json.supply.unit
-      scalar: @json.supply.scalar || @json.supply.value
+      value: @json.supply.scalar || @json.supply.value
 
   ###*
   @returns {CodedValue}
