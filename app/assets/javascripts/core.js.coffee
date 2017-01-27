@@ -32,6 +32,15 @@ class hQuery.PhysicalQuantity
   scalar: -> parseFloat(@json['scalar'])
 
 ###*
+@class Component - a Component with a code and value
+@exports Component as hQuery.Component
+###
+class hQuery.Component
+  constructor: (@json) ->
+    code: -> new hQuery.CodedValue(@json['code'])
+    value: -> new hQuery.PhysicalQuantity(@json['value'])
+###*
+
 @class A code with its corresponding code system
 @exports CodedValue as hQuery.CodedValue
 ###
