@@ -19,3 +19,10 @@ class hQuery.Assessment extends hQuery.CodedEntry
   @returns {CodedValue}
   ###
   method: -> hQuery.createCodedValue @json['method']
+  
+  ###*
+  @returns {Array, hquery.Component} an array of components
+  ###
+  components: ->  
+    for  component in @json['Components']
+      new hQuery.Component component

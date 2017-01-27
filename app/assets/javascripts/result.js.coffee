@@ -68,3 +68,10 @@ class hQuery.Result extends hQuery.CodedEntry
   ###
   resultDateTime: ->
     hQuery.dateFromUtcSeconds @json['result_date_time'] if @json['result_date_time']
+
+  ###*
+  @returns {Array, hquery.Component} an array of components
+  ###
+  components: ->  
+    for  component in @json['Components']
+      new hQuery.Component component

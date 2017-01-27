@@ -98,3 +98,11 @@ class hQuery.Procedure extends hQuery.CodedEntry
   ###
   resultDateTime: ->
     hQuery.dateFromUtcSeconds @json['result_date_time'] if @json['result_date_time']
+
+  ###*
+  Array of Components added in QDM 5.01 Update
+  @returns {Array, hquery.Component} an array of components
+  ###
+  components: ->  
+    for  component in @json['Components']
+      new hQuery.Component component
