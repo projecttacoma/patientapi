@@ -207,6 +207,14 @@
         "code": "71854001",
         "code_system": "SNOMED-CT"
       },
+      "radiationDose": {
+        "code": "0102030405",
+        "code_system": "Test"
+      },
+      "radiationDuration": {
+        "code": "321321321",
+        "code_system": "Test"
+      },
       "time": 1073238725,
       "performer": {
         "person": {

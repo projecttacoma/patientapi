@@ -83,6 +83,10 @@ class PatientApiTest  < Test::Unit::TestCase
     assert_equal 0, @context.eval('patient.procedures().match({"CPT": ["44388"]}, sampleDate).length')
     assert_equal 'SNOMED-CT', @context.eval('patient.procedures()[0].site().codeSystemName()')
     assert_equal '71854001', @context.eval('patient.procedures()[0].site().code()')
+    exception = assert_raise(V8::Error) { @context.eval('patient.procedures()[0].radiationDose().code()') }
+    assert_equal("Object #<Procedure> has no method 'radiationDose'", exception.message)
+    exception = assert_raise(V8::Error) { @context.eval('patient.procedures()[0].radiationDuration().code()') }
+    assert_equal("Object #<Procedure> has no method 'radiationDuration'", exception.message)
     assert_equal 'Bobby', @context.eval('patient.procedures()[0].performer().person().given()')
     assert_equal 'Tables', @context.eval('patient.procedures()[0].performer().person().last()')
     assert_equal '158967008', @context.eval('patient.procedures()[0].source().code()')

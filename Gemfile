@@ -9,6 +9,7 @@ gem 'tilt'
 group :test do
   gem 'minitest', '~> 4.0'
   gem 'turn', :require => false
+  gem 'test-unit'
 
   platforms :ruby do
     gem "libv8" 
