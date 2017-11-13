@@ -4,11 +4,17 @@ Gem::Specification.new do |s|
   s.name = "hquery-patient-api"
   s.summary = "A javascript library abstraction for dealing with patients in hQuery map reduce functions"
   s.description = "A javascript library abstraction for dealing with patients in hQuery map reduce functions"
-  s.email = "talk@hquery.org"
+  s.email = "tacoma-list@lists.mitre.org"
   s.homepage = "http://github.com/hquery/patient_api"
-  s.authors = ["Marc Hadley", "Andy Gregorowicz", "Rob Dingwell", "Andre Quina"]
-  s.version = '1.0.4'
+  s.authors = ["The MITRE Corporation"]
+  s.version = '1.1.0'
 
   s.files = `git ls-files`.split("\n")
-end
 
+  s.add_dependency "sprockets", '2.2.2'
+  s.add_dependency "coffee-script", "~> 2.4"
+  s.add_dependency "uglifier", "~> 3.2"
+  s.add_dependency 'tilt', "~> 1.4"
+  s.add_dependency "libv8", "~> 3.16.14"
+  s.add_dependency "therubyracer", "~> 0.12"
+end

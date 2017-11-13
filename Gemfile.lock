@@ -1,3 +1,14 @@
+PATH
+  remote: .
+  specs:
+    hquery-patient-api (1.1.0)
+      coffee-script (~> 2.4)
+      libv8 (~> 3.16.14)
+      sprockets (= 2.2.2)
+      therubyracer (~> 0.12)
+      tilt (~> 1.4)
+      uglifier (~> 3.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -5,15 +16,14 @@ GEM
     coffee-script (2.4.1)
       coffee-script-source
       execjs
-    coffee-script-source (1.9.1.1)
-    execjs (2.6.0)
+    coffee-script-source (1.12.2)
+    execjs (2.7.0)
     hike (1.2.3)
-    json (1.8.3)
-    libv8 (3.16.14.11)
+    libv8 (3.16.14.19)
     minitest (4.7.5)
-    multi_json (1.11.2)
-    rack (1.6.4)
-    rake (10.4.2)
+    multi_json (1.12.2)
+    rack (1.6.8)
+    rake (12.2.1)
     ref (2.0.0)
     sprockets (2.2.2)
       hike (~> 1.2)
@@ -27,24 +37,17 @@ GEM
     turn (0.9.7)
       ansi
       minitest (~> 4)
-    uglifier (2.7.2)
-      execjs (>= 0.3.0)
-      json (>= 1.8.0)
+    uglifier (3.2.0)
+      execjs (>= 0.3.0, < 3)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  coffee-script
-  libv8
+  hquery-patient-api!
   minitest (~> 4.0)
   rake
-  sprockets (= 2.2.2)
-  therubyracer
-  therubyrhino
-  tilt
   turn
-  uglifier
 
 BUNDLED WITH
-   1.10.5
+   1.15.4
