@@ -18,7 +18,7 @@ GEM
     coffee-script-source (1.12.2)
     execjs (2.7.0)
     hike (1.2.3)
-    libv8 (3.16.14.11)
+    libv8 (3.16.14.19)
     minitest (4.7.5)
     multi_json (1.12.2)
     rack (1.6.8)
