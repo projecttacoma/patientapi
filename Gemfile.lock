@@ -3,10 +3,11 @@ PATH
   specs:
     hquery-patient-api (1.1.0)
       coffee-script (~> 2.4)
-      rake
+      libv8 (~> 3.16.14)
       sprockets (= 2.2.2)
-      tilt
-      uglifier
+      therubyracer (~> 0.12)
+      tilt (~> 1.4)
+      uglifier (~> 3.2)
 
 GEM
   remote: https://rubygems.org/
@@ -44,10 +45,8 @@ PLATFORMS
 
 DEPENDENCIES
   hquery-patient-api!
-  libv8
   minitest (~> 4.0)
-  therubyracer
-  therubyrhino
+  rake
   turn
 
 BUNDLED WITH

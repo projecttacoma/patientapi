@@ -13,7 +13,8 @@ Gem::Specification.new do |s|
 
   s.add_dependency "sprockets", '2.2.2'
   s.add_dependency "coffee-script", "~> 2.4"
-  s.add_dependency "uglifier"
-  s.add_dependency 'rake'
-  s.add_dependency 'tilt'
+  s.add_dependency "uglifier", "~> 3.2"
+  s.add_dependency 'tilt', "~> 1.4"
+  s.add_dependency "libv8", "~> 3.16.14"
+  s.add_dependency "therubyracer", "~> 0.12"
 end
