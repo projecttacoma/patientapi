@@ -2,18 +2,15 @@ require 'tilt'
 require 'coffee_script'
 require 'sprockets'
 require 'execjs'
-
-require 'minitest/autorun'
-
 require 'bundler/setup'
 require 'test/unit'
-require 'turn'
+
 
 Tilt::CoffeeScriptTemplate.default_bare=true
 class QueryExecutor
   @@ctx = nil
-  
-  def self.ctx 
+
+  def self.ctx
     unless @@ctx
       @@ctx = Sprockets::Environment.new(File.expand_path("../../", __FILE__))
       @@ctx.append_path "app/assets/javascripts"
@@ -24,5 +21,5 @@ class QueryExecutor
   def self.patient_api_javascript
     self.ctx.find_asset('patient')
   end
-  
+
 end
