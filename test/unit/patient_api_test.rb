@@ -1,9 +1,5 @@
 require File.expand_path("../../test_helper", __FILE__)
-if RUBY_PLATFORM=='java'
-  require 'rhino'
-else
-  require 'v8'
-end
+require 'v8'
 
 class PatientApiTest  < Test::Unit::TestCase
   def setup
@@ -12,11 +8,8 @@ class PatientApiTest  < Test::Unit::TestCase
     initialize_patient = 'var patient = new hQuery.Patient(barry);'
     date = Time.new(2010,1,1)
     initialize_date = "var sampleDate = new Date(#{date.to_i*1000});"
-    if RUBY_PLATFORM=='java'
-      @context = Rhino::Context.new
-    else
-      @context = V8::Context.new
-    end
+
+    @context = V8::Context.new
 
     @context.eval(patient_api + "\nvar barry = " + fixture_json + ";\n" + initialize_patient + "\n" + initialize_date)
   end
