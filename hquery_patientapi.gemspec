@@ -7,13 +7,13 @@ Gem::Specification.new do |s|
   s.email = "tacoma-list@lists.mitre.org"
   s.homepage = "http://github.com/hquery/patient_api"
   s.authors = ["The MITRE Corporation"]
-  s.version = '1.1.0'
+  s.version = '1.1.1'
 
   s.files = `git ls-files`.split("\n")
 
-  s.add_dependency "sprockets", '2.2.2'
+  s.add_dependency "sprockets", '~> 2.2'
   s.add_dependency "coffee-script", "~> 2.4"
-  s.add_dependency "uglifier", "~> 3.2"
+  s.add_dependency "uglifier", "~> 2.7"
   s.add_dependency 'tilt', "~> 1.4"
   s.add_dependency "libv8", "~> 3.16.14"
   s.add_dependency "therubyracer", "~> 0.12"
