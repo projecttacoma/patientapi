@@ -14,4 +14,3 @@ branches:
   only:
     - master
     - bonnie-prior
-    - bonnie-prior_1302_nokogiri_fix
