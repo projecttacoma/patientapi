@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
 
   s.files = `git ls-files`.split("\n")
 
-  s.add_dependency "sprockets", '~> 2.2'
+  s.add_dependency "sprockets", '>= 2.2', '< 5.0'
   s.add_dependency "coffee-script", "~> 2.4"
   s.add_dependency "uglifier", "~> 2.7"
   s.add_dependency 'tilt', "~> 1.4"
